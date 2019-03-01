@@ -16,7 +16,7 @@ namespace FinalProject.Controllers
 
         public ActionResult Genre()
         {
-
+            
 
             return View();
         }
