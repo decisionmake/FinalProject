@@ -7,56 +7,54 @@
 
 <h2>Popular</h2>
 
-
-<div class="card-columns" style="width: 22rem;">
-    <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieOne.poster_path" alt="Card image cap">
-    <div class="card-body">
-        <h5 class="card-title">Title: @Model.MovieOne.title.</h5>
-        <p class="card-text">About:   @Model.MovieOne.overview</p>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Realease Date:       @Model.MovieOne.release_date</li>
-        <li class="list-group-item">Popularity Ranking:  @Model.MovieOne.popularity</li>
-        <li class="list-group-item">Voter Average:       @Model.MovieOne.vote_average</li>
-    </ul>
-    <div class="card-body">
-        <input type="button" onclick="incrementValue()" value="Increment Value" />
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieTwo.poster_path" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">
-                @Model.MovieTwo.title<h5>
-                    <p class="card-text">@Model.MovieTwo.overview</p>
+<div class="row">
+        <div class="col-lg-6">
+            <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieOne.poster_path" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Title: @Model.MovieOne.title.</h5>
+                <p class="card-text">About:   @Model.MovieOne.overview</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Realease Date:       @Model.MovieOne.release_date</li>
+                <li class="list-group-item">Popularity Ranking:  @Model.MovieOne.popularity</li>
+                <li class="list-group-item">Voter Average:       @Model.MovieOne.vote_average</li>
+            </ul>
+            <div class="card-body">
+                <input type="button" onclick="incrementValue()" value="Increment Value" />
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Realease Date:      @Model.MovieTwo.release_date</li>
-            <li class="list-group-item">Popularity Ranking: @Model.MovieTwo.popularity</li>
-            <li class="list-group-item">Voter Average:      @Model.MovieTwo.vote_average.</li>
-        </ul>
-        <div class="card-body">
-            <input type="button" onclick="incrementValue()" value="Increment Value" />
+        <div class="col-lg-6">
+                <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieTwo.poster_path" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"> @Model.MovieTwo.title</h5>
+                     <p class="card-text">@Model.MovieTwo.overview</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Realease Date:      @Model.MovieTwo.release_date</li>
+                    <li class="list-group-item">Popularity Ranking: @Model.MovieTwo.popularity</li>
+                    <li class="list-group-item">Voter Average:      @Model.MovieTwo.vote_average.</li>
+                </ul>
+                <div class="card-body">
+                    <input type="button" onclick="incrementValue()" value="Increment Value" />
+                </div>
         </div>
-    </div>
 </div>
 
 
-
-    @section Scripts
+        @section Scripts
 {
-        <script type="javascript">
-             function incrementValue()
-            {
-                var value = parseInt(document.getElementById('number').value, 10);
-                value = isNaN(value) ? 0 : value;
-                value++;
-                document.getElementById('number').value = value;
-            }
+            <script type="javascript">
+                 function incrementValue()
+                {
+                    var value = parseInt(document.getElementById('number').value, 10);
+                    value = isNaN(value) ? 0 : value;
+                    value++;
+                    document.getElementById('number').value = value;
+                }
 
-                    $(document).ready(function ()
-                    {
+                        $(document).ready(function ()
+                        {
 
-                    });
-        </script>
-    }
+                        });
+            </script>
+        }
