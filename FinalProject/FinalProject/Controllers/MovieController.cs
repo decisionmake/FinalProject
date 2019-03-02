@@ -32,15 +32,15 @@ namespace FinalProject.Controllers
            
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
             IRestResponse response = client.Execute<GenreMovieModel>(request);
-            var movie = new GenreMovieModel();
+            //var movie = new GenreMovieModel();
             var deserial = new JsonDeserializer();
             //var x = deserial.Deserialize<GenreMovieModel>(response);
-            var customerDto = JsonConvert.DeserializeObject<RootObject>(response.Content);
-            List<Genre> GenreList = customerDto.genres.ToList<Genre>();
+            var GenreLookup = JsonConvert.DeserializeObject<RootObject>(response.Content);
+            //List<Genre> GenreList = customerDto.genres.ToList<Genre>();
             GenreViewModel selection = new GenreViewModel
             {
-                GenreOne = customerDto.genres[0],
-                GenreTwo = customerDto.genres[1]
+                GenreOne = GenreLookup.genres[0],
+                GenreTwo = GenreLookup.genres[1]
 
             };
            
