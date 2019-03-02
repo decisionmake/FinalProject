@@ -218,6 +218,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GenreMovieModel.cs" />
+    <Compile Include="Models\MoviePopularity\MoviePopularityResults.cs" />
+    <Compile Include="Models\MoviePopularity\MoviePopularityRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +263,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Genre.cshtml" />
+    <Content Include="Views\Movie\Popular.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
