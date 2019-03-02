@@ -217,7 +217,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GenreMovieModel.cs" />
+    <Compile Include="Models\GenreSelection\GenreMovieModel.cs" />
+    <Compile Include="Models\GenreSelection\GenreViewModel.cs" />
     <Compile Include="Models\MoviePopularity\MoviePopularityResults.cs" />
     <Compile Include="Models\MoviePopularity\MoviePopularityRoot.cs" />
     <Compile Include="Models\MoviePopularity\MoviePopularityViewModel.cs" />

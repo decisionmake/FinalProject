@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using static FinalProject.Models.GenreMovieModel;
 using FinalProject.Models.MoviePopularity;
+using FinalProject.Models.GenreSelection;
 
 namespace FinalProject.Controllers
 {
@@ -36,8 +37,14 @@ namespace FinalProject.Controllers
             //var x = deserial.Deserialize<GenreMovieModel>(response);
             var customerDto = JsonConvert.DeserializeObject<RootObject>(response.Content);
             List<Genre> GenreList = customerDto.genres.ToList<Genre>();
+            GenreViewModel selection = new GenreViewModel
+            {
+                GenreOne = customerDto.genres[0],
+                GenreTwo = customerDto.genres[1]
+
+            };
            
-            return View(response);
+            return View(selection);
         }
 
         public ActionResult Popular()
