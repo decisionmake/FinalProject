@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static FinalProject.Models.GenreMovieModel;
+using FinalProject.Models.MoviePopularity;
 
 namespace FinalProject.Controllers
 {
@@ -41,7 +42,23 @@ namespace FinalProject.Controllers
 
         public ActionResult Popular()
         {
-            return View();
+            var client = new RestClient("https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
+            var request = new RestRequest(Method.GET);
+            request.AddParameter("undefined", "{}", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+
+
+            var deserial = new JsonDeserializer();
+
+            var jsonResults = JsonConvert.DeserializeObject<MoviePopularityRoot>(response.Content);
+
+            MoviePopularityViewModel movies = new MoviePopularityViewModel
+            {
+                MovieOne = jsonResults.results[0],
+                MovieTwo = jsonResults.results[1]
+            };
+
+            return View(movies);
         }
 
     }
