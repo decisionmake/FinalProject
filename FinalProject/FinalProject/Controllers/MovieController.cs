@@ -52,15 +52,13 @@ namespace FinalProject.Controllers
 
             var jsonResults = JsonConvert.DeserializeObject<MoviePopularityRoot>(response.Content);
 
-
-            int[] popularMoviesSelected = new int[]  {
-                1,
-                2
+            MoviePopularityViewModel movies = new MoviePopularityViewModel
+            {
+                MovieOne = jsonResults.results[0],
+                MovieTwo = jsonResults.results[1]
             };
 
-            ViewData["SelectedMovies"] = popularMoviesSelected;
-
-            return View();
+            return View(movies);
         }
 
     }
