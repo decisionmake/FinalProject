@@ -220,6 +220,7 @@
     <Compile Include="Models\GenreMovieModel.cs" />
     <Compile Include="Models\MoviePopularity\MoviePopularityResults.cs" />
     <Compile Include="Models\MoviePopularity\MoviePopularityRoot.cs" />
+    <Compile Include="Models\MoviePopularity\MoviePopularityViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
