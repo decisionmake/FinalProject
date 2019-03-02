@@ -26,12 +26,21 @@ namespace FinalProject.Models
             public string release_date { get; set; }
         }
 
+
+        public class Genre
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+        }
+
+       
         public class RootObject
         {
             public int page { get; set; }
             public int total_results { get; set; }
             public int total_pages { get; set; }
             public List<Result> results { get; set; }
+            public List<Genre> genres { get; set; }
         }
 
     }

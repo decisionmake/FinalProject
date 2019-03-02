@@ -23,7 +23,7 @@ namespace FinalProject.Controllers
 
         public ActionResult Genre()
         {
-            var client = new RestClient("https://api.themoviedb.org/3/search/movie?include_adult=false&page=1&query=anchorman%202&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
+            var client = new RestClient("https://api.themoviedb.org/3/genre/movie/list?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US");
 
             //var client = new RestClient("https://api.themoviedb.org/3/discover/movie?with_genres=27&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
             var request = new RestRequest(Method.GET);
@@ -34,8 +34,8 @@ namespace FinalProject.Controllers
             var deserial = new JsonDeserializer();
             //var x = deserial.Deserialize<GenreMovieModel>(response);
             var customerDto = JsonConvert.DeserializeObject<RootObject>(response.Content);
-            
-
+            List<Genre> GenreList = customerDto.genres.ToList<Genre>();
+           
             return View(response);
         }
 
