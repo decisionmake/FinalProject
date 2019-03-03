@@ -47,6 +47,9 @@ namespace FinalProject.Controllers
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
 
+
+            var deserial = new JsonDeserializer();
+
             var jsonResults = JsonConvert.DeserializeObject<MoviePopularityRoot>(response.Content);
 
             MoviePopularityViewModel movies = new MoviePopularityViewModel

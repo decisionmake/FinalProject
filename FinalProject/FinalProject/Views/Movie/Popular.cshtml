@@ -8,53 +8,68 @@
 <h2>Popular</h2>
 
 <div class="row">
-        <div class="col-lg-6">
-            <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieOne.poster_path" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Title: @Model.MovieOne.title.</h5>
-                <p class="card-text">About:   @Model.MovieOne.overview</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Realease Date:       @Model.MovieOne.release_date</li>
-                <li class="list-group-item">Popularity Ranking:  @Model.MovieOne.popularity</li>
-                <li class="list-group-item">Voter Average:       @Model.MovieOne.vote_average</li>
-            </ul>
-            <div class="card-body">
-                <input type="button" onclick="incrementValue()" value="Increment Value" />
-            </div>
+    <div class="col-lg-6">
+        <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieOne.poster_path" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Title: @Model.MovieOne.title.</h5>
+            <p class="card-text">About:   @Model.MovieOne.overview</p>
         </div>
-        <div class="col-lg-6">
-                <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieTwo.poster_path" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"> @Model.MovieTwo.title</h5>
-                     <p class="card-text">@Model.MovieTwo.overview</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Realease Date:      @Model.MovieTwo.release_date</li>
-                    <li class="list-group-item">Popularity Ranking: @Model.MovieTwo.popularity</li>
-                    <li class="list-group-item">Voter Average:      @Model.MovieTwo.vote_average.</li>
-                </ul>
-                <div class="card-body">
-                    <input type="button" onclick="incrementValue()" value="Increment Value" />
-                </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Realease Date:       @Model.MovieOne.release_date</li>
+            <li class="list-group-item">Popularity Ranking:  @Model.MovieOne.popularity</li>
+            <li class="list-group-item">Voter Average:       @Model.MovieOne.vote_average</li>
+        </ul>
+        <div class="card-body">
+            <input type="button" id="optionOne" onclick="buttonClickOptionOne()" value="Increment Value" />
         </div>
+    </div>
+    <div class="col-lg-6">
+        <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieTwo.poster_path" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"> @Model.MovieTwo.title</h5>
+            <p class="card-text">@Model.MovieTwo.overview</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Realease Date:      @Model.MovieTwo.release_date</li>
+            <li class="list-group-item">Popularity Ranking: @Model.MovieTwo.popularity</li>
+            <li class="list-group-item">Voter Average:      @Model.MovieTwo.vote_average.</li>
+        </ul>
+        <div class="card-body">
+            <input type="button" id="optioneOne" onclick="buttonClickOptionTwo()" value="Increment Value" />
+        </div>
+    </div>
 </div>
 
 
-        @section Scripts
+@section Scripts
 {
-            <script type="javascript">
-                 function incrementValue()
-                {
-                    var value = parseInt(document.getElementById('number').value, 10);
-                    value = isNaN(value) ? 0 : value;
-                    value++;
-                    document.getElementById('number').value = value;
-                }
 
-                        $(document).ready(function ()
-                        {
+    <script type="text/javascript">
 
-                        });
-            </script>
+        var i = 0;
+        function buttonClickOptionOne() {
+            //document.getElementById('optionOne').value = ++i;
+            i++;
+            console.log(i)
+            if (i == 2) {
+                window.location.href='@Url.Action("index","home")' /* replace with success redirect*/
+            }
+            if ((i + j) == 2 && i == 1){
+                window.location.reload();
+            }
         }
+        var j = 0;
+        function buttonClickOptionTwo() {
+            //document.getElementById('optioneOne').value = ++j;
+            j++;
+            console.log(j)
+            if (j == 2) {
+                window.location.href='@Url.Action("index","home")' /* replace with success redirect*/
+            }
+            if ((i + j) == 2 && j == 1) {
+                window.location.reload();
+            }
+        }
+
+    </script>
+}
