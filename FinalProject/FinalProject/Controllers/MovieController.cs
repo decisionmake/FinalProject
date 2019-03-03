@@ -36,11 +36,14 @@ namespace FinalProject.Controllers
             var deserial = new JsonDeserializer();
             //var x = deserial.Deserialize<GenreMovieModel>(response);
             var GenreLookup = JsonConvert.DeserializeObject<RootObject>(response.Content);
-            //List<Genre> GenreList = customerDto.genres.ToList<Genre>();
+            List<Genre> GenreList = GenreLookup.genres.ToList<Genre>();
+            Random rnd = new Random();
+            int index = rnd.Next(GenreList.Count);
+            int index2 = (rnd.Next(GenreList.Count) - 1); 
             GenreViewModel selection = new GenreViewModel
             {
-                GenreOne = GenreLookup.genres[0],
-                GenreTwo = GenreLookup.genres[1]
+                GenreOne = GenreLookup.genres[index],
+                GenreTwo = GenreLookup.genres[index2]
 
             };
            
