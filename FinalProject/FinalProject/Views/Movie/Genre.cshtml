@@ -1,4 +1,5 @@
-﻿
+﻿@model FinalProject.Models.GenreSelection.GenreViewModel
+
 @{
     ViewBag.Title = "Genre";
 }
@@ -8,26 +9,61 @@
 <body>
     <div class="card-deck" ">
         <div class="card">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="@Model.GenreOne.name" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">@Model.GenreOne.name</h5>
                 <p class="card-text">           </p>
             </div>
             <div class="card-footer">
                 <small class="text-muted">Last updated 3 mins ago</small>
             </div>
+            <button onclick="buttonClick1()">Click Me</button>
+            <input type="text" id="inc" value="0">
         </div>
 
         <div class="card">
             <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">@Model.GenreTwo.name</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             </div>
             <div class="card-footer">
                 <small class="text-muted">Last updated 3 mins ago</small>
             </div>
+            <button onclick="buttonClick()">Click Me</button>
+            <input type="text" id="inc1" value="0">
         </div>
 
     </div>
 </body>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        
+        var i = 0;
+        function buttonClick1() {
+            document.getElementById('inc').value = ++i;
+            console.log(i)
+            if (i == 2) {
+                window.location.href='@Url.Action("index","home")' /* replace with success redirect*/
+            }
+            if ((i + j) == 2 && i == 1){
+                window.location.reload();
+            }
+        }
+        var j = 0;
+        function buttonClick() {
+            document.getElementById('inc1').value = ++j;
+            console.log(j)
+            if (j == 2) {
+                window.location.href='@Url.Action("index","home")' /* replace with success redirect*/
+            }
+            if ((i + j) == 2 && j == 1) {
+                window.location.reload();
+            }
+        }
+    
+
+    </script>
+}
