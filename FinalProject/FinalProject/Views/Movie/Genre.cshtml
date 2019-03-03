@@ -57,7 +57,7 @@
             document.getElementById('inc1').value = ++j;
             console.log(j)
             if (j == 2) {
-                // go to success
+                window.location.href='@Url.Action("index","home")' /* replace with success redirect*/
             }
             if ((i + j) == 2 && j == 1) {
                 window.location.reload();

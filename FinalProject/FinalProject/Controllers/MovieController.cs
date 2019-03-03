@@ -32,14 +32,13 @@ namespace FinalProject.Controllers
            
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
             IRestResponse response = client.Execute<GenreMovieModel>(request);
-            //var movie = new GenreMovieModel();
-            var deserial = new JsonDeserializer();
-            //var x = deserial.Deserialize<GenreMovieModel>(response);
+            
             var GenreLookup = JsonConvert.DeserializeObject<RootObject>(response.Content);
-            List<Genre> GenreList = GenreLookup.genres.ToList<Genre>();
+            List<Genre> GenreList = GenreLookup.genres.ToList();
             Random rnd = new Random();
             int index = rnd.Next(GenreList.Count);
-            int index2 = (rnd.Next(GenreList.Count) - 1); 
+            int index2 = rnd.Next(GenreList.Count); 
+            //maybe add loop so that index and index 2 can never be equal?
             GenreViewModel selection = new GenreViewModel
             {
                 GenreOne = GenreLookup.genres[index],
