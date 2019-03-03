@@ -17,7 +17,7 @@
             <div class="card-footer">
                 <small class="text-muted">Last updated 3 mins ago</small>
             </div>
-            <button onclick="buttonClick()">Click Me</button>
+            <button onclick="buttonClick1()">Click Me</button>
             <input type="text" id="inc" value="0">
         </div>
 
@@ -31,7 +31,7 @@
                 <small class="text-muted">Last updated 3 mins ago</small>
             </div>
             <button onclick="buttonClick()">Click Me</button>
-            <input type="text" id="inc" value="0">
+            <input type="text" id="inc1" value="0">
         </div>
 
     </div>
@@ -42,14 +42,27 @@
     <script type="text/javascript">
         
         var i = 0;
-        function buttonClick() {
+        function buttonClick1() {
             document.getElementById('inc').value = ++i;
             console.log(i)
             if (i == 2) {
+                window.location.href='@Url.Action("index","home")' /* replace with success redirect*/
+            }
+            if ((i + j) == 2 && i == 1){
                 window.location.reload();
             }
         }
-        
+        var j = 0;
+        function buttonClick() {
+            document.getElementById('inc1').value = ++j;
+            console.log(j)
+            if (j == 2) {
+                // go to success
+            }
+            if ((i + j) == 2 && j == 1) {
+                window.location.reload();
+            }
+        }
     
 
     </script>
