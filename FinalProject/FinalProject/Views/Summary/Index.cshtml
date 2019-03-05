@@ -1,0 +1,16 @@
+﻿@model FinalProject.Models.SummaryPage.SummaryInformation
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Summary</h2>
+
+<body>
+    <div>
+        Your movie selection is @Model.MovieTitle! Enjoy!
+        <div class="col-lg-6">
+            <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.PosterPath" alt="Card image cap">
+        </div>
+        </div>
+</body>

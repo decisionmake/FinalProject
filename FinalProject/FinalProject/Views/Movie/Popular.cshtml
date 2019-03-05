@@ -52,7 +52,7 @@
             i++;
             console.log(i)
             if (i == 2) {
-                window.location.href='@Url.Action("index","home")' /* replace with success redirect*/
+                window.location.href='@Url.Action("Index","Summary", new { movieTitle = Model.MovieOne.title, id = Model.MovieOne.id, posterPath = Model.MovieOne.poster_path })' /* replace with success redirect*/
             }
             if ((i + j) == 2 && i == 1){
                 window.location.reload();
@@ -64,7 +64,7 @@
             j++;
             console.log(j)
             if (j == 2) {
-                window.location.href='@Url.Action("index","home")' /* replace with success redirect*/
+                window.location.href='@Url.Action("Index","Summary")' /* replace with success redirect*/
             }
             if ((i + j) == 2 && j == 1) {
                 window.location.reload();

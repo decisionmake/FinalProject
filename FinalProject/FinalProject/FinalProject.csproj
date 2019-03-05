@@ -212,8 +212,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BLL\MovieApiCalls.cs" />
+    <Compile Include="BLL\RandomNumberGenerator.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\SummaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,6 +225,7 @@
     <Compile Include="Models\MoviePopularity\MoviePopularityResults.cs" />
     <Compile Include="Models\MoviePopularity\MoviePopularityRoot.cs" />
     <Compile Include="Models\MoviePopularity\MoviePopularityViewModel.cs" />
+    <Compile Include="Models\SummaryPage\SummaryInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +270,7 @@
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Genre.cshtml" />
     <Content Include="Views\Movie\Popular.cshtml" />
+    <Content Include="Views\Summary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
