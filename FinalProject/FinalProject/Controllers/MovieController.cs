@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using static FinalProject.Models.GenreMovieModel;
 using FinalProject.Models.MoviePopularity;
 using FinalProject.Models.GenreSelection;
+using FinalProject.BLL;
 
 namespace FinalProject.Controllers
 {
@@ -61,10 +62,12 @@ namespace FinalProject.Controllers
 
             var jsonResults = JsonConvert.DeserializeObject<MoviePopularityRoot>(response.Content);
 
+
+            int[] randomNumber = RandomNumberGenerator.GetNumber(jsonResults.results.Count());
             MoviePopularityViewModel movies = new MoviePopularityViewModel
             {
-                MovieOne = jsonResults.results[0],
-                MovieTwo = jsonResults.results[1]
+                MovieOne = jsonResults.results[randomNumber[0]],
+                MovieTwo = jsonResults.results[randomNumber[1]]
             };
 
             return View(movies);
