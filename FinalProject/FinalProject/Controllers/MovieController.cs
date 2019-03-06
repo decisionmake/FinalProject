@@ -34,7 +34,7 @@ namespace FinalProject.Controllers
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
             IRestResponse response = client.Execute<GenreMovieModel>(request);
             
-            var GenreLookup = JsonConvert.DeserializeObject<RootObject>(response.Content);
+            var GenreLookup = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
             List<Genre> GenreList = GenreLookup.genres.ToList();
             Random rnd = new Random();
             int index = rnd.Next(GenreList.Count);
@@ -68,6 +68,35 @@ namespace FinalProject.Controllers
             //};
 
             return View(MovieApiCalls.GetPopularMovies());
+        }
+
+        public ActionResult GenreMovieSelector(int id)
+        {
+            var x = id;
+
+            var client = new RestClient("https://api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=" + x);
+            var request = new RestRequest(Method.GET);
+            request.AddParameter("undefined", "{}", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+
+
+            var deserial = new JsonDeserializer();
+
+                var jsonResults = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
+
+            List<GenreMovieResult> NewList = jsonResults.results.ToList();
+            Random rnd = new Random();
+            int index = rnd.Next(NewList.Count);
+            int index2 = rnd.Next(NewList.Count);
+
+            GenreSelectorViewModel GenreSelector = new GenreSelectorViewModel
+            {
+                GenreMovieOne = jsonResults.results[index],
+                GenreMovieTwo = jsonResults.results[index2]
+            };
+
+            return View(GenreSelector);
+
         }
 
     }
