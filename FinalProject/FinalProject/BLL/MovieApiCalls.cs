@@ -17,7 +17,12 @@ namespace FinalProject.BLL
 
         public static MoviePopularityViewModel GetPopularMovies()
         {
-            var client = new RestClient("https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
+            //var client = new RestClient("https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
+
+            int[] page = RandomNumberGenerator.GetNumber(5);
+            var client = new RestClient("https://api.themoviedb.org/3/movie/popular?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&page="
+                                         + page[0]);
+
             var request = new RestRequest(Method.GET);
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
