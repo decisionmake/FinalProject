@@ -26,28 +26,28 @@ namespace FinalProject.Controllers
 
         public ActionResult Genre()
         {
-            var client = new RestClient("https://api.themoviedb.org/3/genre/movie/list?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US");
+            //var client = new RestClient("https://api.themoviedb.org/3/genre/movie/list?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US");
 
-            //var client = new RestClient("https://api.themoviedb.org/3/discover/movie?with_genres=27&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
-            var request = new RestRequest(Method.GET);
+            ////var client = new RestClient("https://api.themoviedb.org/3/discover/movie?with_genres=27&include_video=false&include_adult=false&sort_by=popularity.desc&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
+            //var request = new RestRequest(Method.GET);
            
-            request.AddParameter("undefined", "{}", ParameterType.RequestBody);
-            IRestResponse response = client.Execute<GenreMovieModel>(request);
+            //request.AddParameter("undefined", "{}", ParameterType.RequestBody);
+            //IRestResponse response = client.Execute<GenreMovieModel>(request);
             
-            var GenreLookup = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
-            List<Genre> GenreList = GenreLookup.genres.ToList();
-            Random rnd = new Random();
-            int index = rnd.Next(GenreList.Count);
-            int index2 = rnd.Next(GenreList.Count); 
-            //maybe add loop so that index and index 2 can never be equal?
-            GenreViewModel selection = new GenreViewModel
-            {
-                GenreOne = GenreLookup.genres[index],
-                GenreTwo = GenreLookup.genres[index2]
+            //var GenreLookup = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
+            //List<Genre> GenreList = GenreLookup.genres.ToList();
+            //Random rnd = new Random();
+            //int index = rnd.Next(GenreList.Count);
+            //int index2 = rnd.Next(GenreList.Count); 
+            ////maybe add loop so that index and index 2 can never be equal?
+            //GenreViewModel selection = new GenreViewModel
+            //{
+            //    GenreOne = GenreLookup.genres[index],
+            //    GenreTwo = GenreLookup.genres[index2]
 
-            };
+            //};
            
-            return View(selection);
+            return View(MovieApiCalls.GetGenre());
         }
 
         public ActionResult Popular()
@@ -71,31 +71,32 @@ namespace FinalProject.Controllers
         }
 
         public ActionResult GenreMovieSelector(int id)
-        {
-            var x = id;
+        { 
+        //{
+        //    var x = id;
 
-            var client = new RestClient("https://api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=" + x);
-            var request = new RestRequest(Method.GET);
-            request.AddParameter("undefined", "{}", ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
+        //    var client = new RestClient("https://api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=" + x);
+        //    var request = new RestRequest(Method.GET);
+        //    request.AddParameter("undefined", "{}", ParameterType.RequestBody);
+        //    IRestResponse response = client.Execute(request);
 
 
-            var deserial = new JsonDeserializer();
+        //    var deserial = new JsonDeserializer();
 
-                var jsonResults = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
+        //        var jsonResults = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
 
-            List<GenreMovieResult> NewList = jsonResults.results.ToList();
-            Random rnd = new Random();
-            int index = rnd.Next(NewList.Count);
-            int index2 = rnd.Next(NewList.Count);
+        //    List<GenreMovieResult> NewList = jsonResults.results.ToList();
+        //    Random rnd = new Random();
+        //    int index = rnd.Next(NewList.Count);
+        //    int index2 = rnd.Next(NewList.Count);
 
-            GenreSelectorViewModel GenreSelector = new GenreSelectorViewModel
-            {
-                GenreMovieOne = jsonResults.results[index],
-                GenreMovieTwo = jsonResults.results[index2]
-            };
+        //    GenreSelectorViewModel GenreSelector = new GenreSelectorViewModel
+        //    {
+        //        GenreMovieOne = jsonResults.results[index],
+        //        GenreMovieTwo = jsonResults.results[index2]
+        //    };
 
-            return View(GenreSelector);
+            return View(MovieApiCalls.GetByGenre(id));
 
         }
 
