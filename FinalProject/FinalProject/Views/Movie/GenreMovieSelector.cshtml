@@ -49,7 +49,7 @@
             console.log(i)
             if (i == 2) {
 
-                window.location.href = '@Url.Action("GenreMovieSelector", "Movie", new { id = Model.GenreMovieOne.title })' /* replace with success redirect*/
+                window.location.href='@Url.Action("Index","Summary", new { movieTitle = Model.GenreMovieOne.title, id = Model.GenreMovieOne.id, posterPath = Model.GenreMovieOne.poster_path })' 
             }
             if ((i + j) == 2 && i == 1){
                 window.location.reload();
@@ -61,7 +61,7 @@
             document.getElementById('inc1').value = ++j;
             console.log(j)
             if (j == 2) {
-                window.location.href='@Url.Action("GenreMovieSelector", "Movie", new { id = Model.GenreMovieTwo.title })' /* replace with success redirect*/
+                window.location.href='@Url.Action("Index","Summary", new { movieTitle = Model.GenreMovieTwo.title, id = Model.GenreMovieTwo.id, posterPath = Model.GenreMovieTwo.poster_path })' 
             }
             if ((i + j) == 2 && j == 1) {
                 window.location.reload();

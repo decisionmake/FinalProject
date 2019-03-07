@@ -12,5 +12,11 @@
         <div class="col-lg-6">
             <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.PosterPath" alt="Card image cap">
         </div>
-        </div>
+    </div>
+    <p>To continue on to food, please enter your ZipCode</p>
+    @using (Html.BeginForm("index", "food"))
+    {
+        <input type="text" name="zip" />
+        <input type="submit" />
+    }
 </body>
