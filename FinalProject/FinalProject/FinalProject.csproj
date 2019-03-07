@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
@@ -217,9 +223,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\SummaryController.cs" />
+    <Compile Include="DAL\MovieVotingHistoryDbContext.cs" />
+    <Compile Include="DAL\MovieVotingHistoryDbIntializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAL_Objects\MovieHistory.cs" />
     <Compile Include="Models\GenreSelection\GenreMovieModel.cs" />
     <Compile Include="Models\GenreSelection\GenreMovieResult.cs" />
     <Compile Include="Models\GenreSelection\GenreRootObject.cs" />
@@ -273,11 +282,8 @@
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Genre.cshtml" />
     <Content Include="Views\Movie\Popular.cshtml" />
-
     <Content Include="Views\Movie\GenreMovieSelector.cshtml" />
-
     <Content Include="Views\Summary\Index.cshtml" />
-
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

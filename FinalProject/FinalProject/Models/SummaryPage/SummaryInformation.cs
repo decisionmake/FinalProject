@@ -14,5 +14,6 @@ namespace FinalProject.Models.SummaryPage
         public string MovieTitle { get; set; }
         public int id { get; set; }
         public string PosterPath { get; set; }
+
     }
 }
