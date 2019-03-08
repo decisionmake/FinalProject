@@ -18,7 +18,7 @@ namespace FinalProject.Controllers
         private MovieVotingHistoryDbContext db = new MovieVotingHistoryDbContext();
 
         // GET: Summary
-        public ActionResult Index(string movieTitle, int id, string posterPath)
+        public ActionResult Index(SummaryInformation summary)
         {
             List<MovieHistory> movies = new List<MovieHistory>();
             movies = db.Movie.ToList();
@@ -30,36 +30,36 @@ namespace FinalProject.Controllers
             };
 
 
-            if (movies.Exists(d => d.MovieName == newMovie.MovieName))
-            {
-                MovieHistory newMovie2 = new MovieHistory();
+            //if (movies.Exists(d => d.MovieName == newMovie.MovieName))
+            //{
+            //    MovieHistory newMovie2 = new MovieHistory();
 
-                newMovie2 = movies.First(d => d.MovieName == movieTitle);
-                int timesWatched = newMovie2.NumberOfTimesChosen++;
+            //    newMovie2 = movies.First(d => d.MovieName == movieTitle);
+            //    int timesWatched = newMovie2.NumberOfTimesChosen++;
 
-                db.Movie.Where(d => d.MovieName == movieTitle).ToList().ForEach(d => d.NumberOfTimesChosen = timesWatched);
-                db.SaveChanges();
+            //    db.Movie.Where(d => d.MovieName == movieTitle).ToList().ForEach(d => d.NumberOfTimesChosen = timesWatched);
+            //    db.SaveChanges();
 
-            }
-            else 
-            {
-                MovieHistory newMovieToAdd = new MovieHistory()
-                {
-                    MovieName = movieTitle,
-                    NumberOfTimesChosen = 1
-                };
+            //}
+            //else 
+            //{
+            //    MovieHistory newMovieToAdd = new MovieHistory()
+            //    {
+            //        MovieName = movieTitle,
+            //        NumberOfTimesChosen = 1
+            //    };
 
-                db.Movie.Add(newMovieToAdd);
-                db.SaveChanges();
-            }
+            //    db.Movie.Add(newMovieToAdd);
+            //    db.SaveChanges();
+            //}
 
 
-            var summary = new SummaryInformation
-            {
-                MovieTitle = movieTitle,
-                id = id,
-                PosterPath = posterPath
-            };
+            //var summary = new SummaryInformation
+            //{
+            //    MovieTitle = movieTitle,
+            //    id = id,
+            //    PosterPath = posterPath
+            //};
 
             return View(summary);
         }
