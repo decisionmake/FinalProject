@@ -14,7 +14,7 @@ namespace FinalProject.Controllers
 {
     public class SummaryController : Controller
     {
-
+        
         private MovieVotingHistoryDbContext db = new MovieVotingHistoryDbContext();
 
         // GET: Summary
