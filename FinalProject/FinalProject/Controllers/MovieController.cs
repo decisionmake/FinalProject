@@ -18,6 +18,7 @@ namespace FinalProject.Controllers
 {
     public class MovieController : Controller
     {
+
         // GET: Movie
         public ActionResult Index()
         {
@@ -31,6 +32,13 @@ namespace FinalProject.Controllers
 
         public ActionResult Popular()
         {
+
+            Session.Add("test2", "test2");
+            var test = Session.Count;
+
+            Session.Clear();
+            test = Session.Count;
+
             return View(MovieApiCalls.GetPopularMovies());
         }
 
