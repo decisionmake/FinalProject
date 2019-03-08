@@ -1,4 +1,5 @@
 ﻿using FinalProject.DAL;
+using FinalProject.DAL.InformationTracking;
 using FinalProject.Models.DAL_Objects;
 using FinalProject.Models.GenreSelection;
 using FinalProject.Models.MoviePopularity;
@@ -20,39 +21,7 @@ namespace FinalProject.Controllers
         // GET: Summary
         public ActionResult Index(string movieTitle, int id, string posterPath)
         {
-            List<MovieHistory> movies = new List<MovieHistory>();
-            movies = db.Movie.ToList();
-
-            MovieHistory newMovie = new MovieHistory()
-            {
-                MovieName = "Test",
-                NumberOfTimesChosen = 3
-            };
-
-
-            if (movies.Exists(d => d.MovieName == newMovie.MovieName))
-            {
-                MovieHistory newMovie2 = new MovieHistory();
-
-                newMovie2 = movies.First(d => d.MovieName == movieTitle);
-                int timesWatched = newMovie2.NumberOfTimesChosen++;
-
-                db.Movie.Where(d => d.MovieName == movieTitle).ToList().ForEach(d => d.NumberOfTimesChosen = timesWatched);
-                db.SaveChanges();
-
-            }
-            else 
-            {
-                MovieHistory newMovieToAdd = new MovieHistory()
-                {
-                    MovieName = movieTitle,
-                    NumberOfTimesChosen = 1
-                };
-
-                db.Movie.Add(newMovieToAdd);
-                db.SaveChanges();
-            }
-
+            DecisionLogger.EditMovieDeciosionTracker(movieTitle, id, posterPath, db);
 
             var summary = new SummaryInformation
             {

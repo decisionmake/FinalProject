@@ -223,6 +223,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\SummaryController.cs" />
+    <Compile Include="DAL\InformationTracking\DecisionLogger.cs" />
     <Compile Include="DAL\MovieVotingHistoryDbContext.cs" />
     <Compile Include="DAL\MovieVotingHistoryDbIntializer.cs" />
     <Compile Include="Global.asax.cs">
