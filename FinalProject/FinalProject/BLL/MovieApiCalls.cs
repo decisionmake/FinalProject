@@ -8,7 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.ModelBinding;
+using System.Web.Script.Serialization;
 using static FinalProject.Models.GenreMovieModel;
+using HttpCookie = System.Web.HttpCookie;
 
 namespace FinalProject.BLL
 {
@@ -36,7 +39,25 @@ namespace FinalProject.BLL
                 MovieTwo = jsonResults.results[randomNumber[1]]
             };
 
-            return movies;
+
+            string myObjectJson = new JavaScriptSerializer().Serialize(movies.MovieOne.title); //serialization not needed here, but it might be cool to create a class/folder just to pull out info from the cookie.
+            string myObjectJson2 = new JavaScriptSerializer().Serialize(movies.MovieTwo.title);
+        
+            var cookie = HttpContext.Current.Request.Cookies.Get("information");
+
+            if (cookie == null)
+            {
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", myObjectJson));
+            }
+            else
+            {
+                string sendCookie = myObjectJson + myObjectJson2 + cookie;
+                string sendSerialize = new JavaScriptSerializer().Serialize(sendCookie);
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize.ToString()));
+            }
+                
+
+                return movies;
 
         }
 
@@ -80,7 +101,7 @@ namespace FinalProject.BLL
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
 
-            var w = ($"he{z}");
+            
             var deserial = new JsonDeserializer();
 
             var jsonResults = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);

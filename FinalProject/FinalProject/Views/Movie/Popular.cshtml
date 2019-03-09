@@ -40,7 +40,6 @@
     </div>
 </div>
 
-
 @section Scripts
 {
 
@@ -51,8 +50,8 @@
             i++;
             console.log(i)
             if (i == 2) {
-               
-                window.location.href='@Html.Raw(@Url.Action("Index","Summary", new { movieTitle = Model.MovieOne.title, id = Model.MovieOne.id, posterPath = Model.MovieOne.poster_path }))' 
+
+                window.location.href='@Html.Raw(@Url.Action("Index","Summary", new { movieTitle = Model.MovieOne.title, id = Model.MovieOne.id, posterPath = Model.MovieOne.poster_path }))'
             }
             if ((i + j) == 2 && i == 1) {
                 $.ajax({
@@ -67,7 +66,7 @@
             j++;
             console.log(j)
             if (j == 2) {
-                                window.location.href='@Html.Raw(@Url.Action("Index","Summary", new { movieTitle = Model.MovieTwo.title, id = Model.MovieTwo.id, posterPath = Model.MovieTwo.poster_path }))' 
+                                window.location.href='@Html.Raw(@Url.Action("Index","Summary", new { movieTitle = Model.MovieTwo.title, id = Model.MovieTwo.id, posterPath = Model.MovieTwo.poster_path }))'
 
                 @*window.location.href='@Html.Raw(@Url.Action("Index", "Summary", new { movieTitle = Model.MovieTwo.title, id = Model.MovieTwo.id, posterPath = Model.MovieTwo.poster_path }))'*@
             }
