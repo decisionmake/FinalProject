@@ -10,7 +10,6 @@ namespace FinalProject.Controllers
     {
         public ActionResult Index()
         {
-            Session.Add("test", "test");
             return View();
         }
 
