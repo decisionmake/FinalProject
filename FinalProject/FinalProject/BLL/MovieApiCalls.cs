@@ -39,27 +39,33 @@ namespace FinalProject.BLL
                 MovieTwo = jsonResults.results[randomNumber[1]]
             };
 
-             List<MoviePopularityResults> toCookie = new List<MoviePopularityResults>();
-            toCookie.Add(movies.MovieOne);
+             List<MoviePopularityResults> toCookie = new List<MoviePopularityResults>(); //create list to send to cookie
+            toCookie.Add(movies.MovieOne); //send 2 movies
             toCookie.Add(movies.MovieTwo);
-            string CookieAsString = JsonConvert.SerializeObject(toCookie);
+            string CookieAsString = JsonConvert.SerializeObject(toCookie); //serialize to json
             
-            var cookie = HttpContext.Current.Request.Cookies.Get("information");
+            var cookie = HttpContext.Current.Request.Cookies.Get("information"); //pull cookie 
 
 
-            if (cookie == null)
+            if (cookie == null) //if no cookie, create, send two movies
             {
                 HttpContext.Current.Response.SetCookie(new HttpCookie("information", CookieAsString));
             }
             else
-            {   var get = HttpContext.Current.Request.Cookies["information"].Value;
+            {
+                var get = HttpContext.Current.Request.Cookies["information"].Value; //if cookie exists, grab it
+              
+            
+
+                var result = JsonConvert.DeserializeObject<List<MoviePopularityResults>>(get); //break the cookie into objects
+                foreach (var item in result)
+                {
+                    toCookie.Add(item); //add old movie objects to list of new movie objects
+                }
+
                 
-                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-                dynamic result = JsonConvert.DeserializeObject<MoviePopularityResults>(get);
-                
-                toCookie.Add(result);
-                string sendSerialize = new JavaScriptSerializer().Serialize(toCookie);
-                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize));
+                string sendSerialize = new JavaScriptSerializer().Serialize(toCookie); //serailze that 
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize)); //send cookie back up
             }
                 
 
