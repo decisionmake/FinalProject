@@ -39,21 +39,27 @@ namespace FinalProject.BLL
                 MovieTwo = jsonResults.results[randomNumber[1]]
             };
 
-
-            string myObjectJson = new JavaScriptSerializer().Serialize(movies.MovieOne.title); //serialization not needed here, but it might be cool to create a class/folder just to pull out info from the cookie.
-            string myObjectJson2 = new JavaScriptSerializer().Serialize(movies.MovieTwo.title);
-        
+             List<MoviePopularityResults> toCookie = new List<MoviePopularityResults>();
+            toCookie.Add(movies.MovieOne);
+            toCookie.Add(movies.MovieTwo);
+            string CookieAsString = JsonConvert.SerializeObject(toCookie);
+            
             var cookie = HttpContext.Current.Request.Cookies.Get("information");
+
 
             if (cookie == null)
             {
-                HttpContext.Current.Response.SetCookie(new HttpCookie("information", myObjectJson));
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", CookieAsString));
             }
             else
-            {
-                string sendCookie = myObjectJson + myObjectJson2 + cookie;
-                string sendSerialize = new JavaScriptSerializer().Serialize(sendCookie);
-                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize.ToString()));
+            {   var get = HttpContext.Current.Request.Cookies["information"].Value;
+                
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                dynamic result = JsonConvert.DeserializeObject<MoviePopularityResults>(get);
+                
+                toCookie.Add(result);
+                string sendSerialize = new JavaScriptSerializer().Serialize(toCookie);
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize));
             }
                 
 
