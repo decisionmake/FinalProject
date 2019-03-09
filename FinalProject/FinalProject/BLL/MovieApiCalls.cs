@@ -94,7 +94,7 @@ namespace FinalProject.BLL
 
             var x = id;
             int[] y = {1,2,3,4,5};
-            int[] z = RandomNumberGenerator.GetNumber(y.Count());
+            int[] z = RandomNumberGenerator.GetNumberMovie(y.Count());
             string testUrl = $"api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page={z[0]}&with_genres={x}";
             var client = new RestClient($"https://" + testUrl);
             var request = new RestRequest(Method.GET);
