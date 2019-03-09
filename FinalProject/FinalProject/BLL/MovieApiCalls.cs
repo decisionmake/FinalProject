@@ -39,7 +39,7 @@ namespace FinalProject.BLL
                 MovieTwo = jsonResults.results[randomNumber[1]]
             };
 
-             List<MoviePopularityResults> toCookie = new List<MoviePopularityResults>(); //create list to send to cookie
+            List<MoviePopularityResults> toCookie = new List<MoviePopularityResults>(); //create list to send to cookie
             toCookie.Add(movies.MovieOne); //send 2 movies
             toCookie.Add(movies.MovieTwo);
             string CookieAsString = JsonConvert.SerializeObject(toCookie); //serialize to json

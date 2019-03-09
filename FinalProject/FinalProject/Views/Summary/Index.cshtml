@@ -19,4 +19,21 @@
         <input type="text" name="zip" />
         <input type="submit" />
     }
+
+    @{
+
+        var get = HttpContext.Current.Request.Cookies["information"].Value; //pulls cookie
+        var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<FinalProject.Models.MoviePopularity.MoviePopularityResults>>(get); //break the cookie into objects
+       
+
+        <p>You fought over these movies:</p> //iterate list
+        foreach (var item in result)
+        {
+
+        <p>@item.title</p>
+
+
+
+            }
+        }   
 </body>
