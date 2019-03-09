@@ -19,7 +19,6 @@ namespace FinalProject.Controllers
     public class MovieController : Controller
     {
 
-        // GET: Movie
         public ActionResult Index()
         {
             return View();
@@ -47,5 +46,6 @@ namespace FinalProject.Controllers
             return View(MovieApiCalls.GetByGenre(id));
         }
 
+        
     }
 }

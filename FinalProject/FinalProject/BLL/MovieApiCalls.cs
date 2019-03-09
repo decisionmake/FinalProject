@@ -8,7 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.ModelBinding;
+using System.Web.Script.Serialization;
 using static FinalProject.Models.GenreMovieModel;
+using HttpCookie = System.Web.HttpCookie;
 
 namespace FinalProject.BLL
 {
@@ -36,7 +39,25 @@ namespace FinalProject.BLL
                 MovieTwo = jsonResults.results[randomNumber[1]]
             };
 
-            return movies;
+
+            string myObjectJson = new JavaScriptSerializer().Serialize(movies.MovieOne.title); //serialization not needed here, but it might be cool to create a class/folder just to pull out info from the cookie.
+            string myObjectJson2 = new JavaScriptSerializer().Serialize(movies.MovieTwo.title);
+        
+            var cookie = HttpContext.Current.Request.Cookies.Get("information");
+
+            if (cookie == null)
+            {
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", myObjectJson));
+            }
+            else
+            {
+                string sendCookie = myObjectJson + myObjectJson2 + cookie;
+                string sendSerialize = new JavaScriptSerializer().Serialize(sendCookie);
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize.ToString()));
+            }
+                
+
+                return movies;
 
         }
 
@@ -72,13 +93,15 @@ namespace FinalProject.BLL
         {
 
             var x = id;
-
-            var client = new RestClient("https://api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=" + x);
+            int[] y = {1,2,3,4,5};
+            int[] z = RandomNumberGenerator.GetNumber(y.Count());
+            string testUrl = $"api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page={z[0]}&with_genres={x}";
+            var client = new RestClient($"https://" + testUrl);
             var request = new RestRequest(Method.GET);
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
 
-
+            
             var deserial = new JsonDeserializer();
 
             var jsonResults = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
@@ -97,6 +120,8 @@ namespace FinalProject.BLL
 
             return GenreSelector;
         }
+
+         
 
     }
 }

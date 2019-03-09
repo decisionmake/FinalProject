@@ -4,40 +4,94 @@
 @model FinalProject.Models.GenreSelection.GenreSelectorViewModel
 
 
+@*<div class="w3-row-padding" style="display:inline-block">
 
 
-<body>
-    <div class="card-deck">
-        <div class="card">
-        <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.GenreMovieOne.poster_path" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Title: @Model.GenreMovieOne.title.</h5>
-            <p class="card-text">About:   @Model.GenreMovieTwo.overview</p>
-            <p class="card-text">           </p>
-        </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+
+        <div class="w3-third" style="display:inline-block">
+            <div class="w3-card-4">
+                <img src="http://image.tmdb.org/t/p/w185/@Model.GenreMovieOne.poster_path" alt="Car" onclick="buttonClick1()" id="inc1" style="width:100%">
+                <div class="w3-container">
+                    <p>@Model.GenreMovieOne.title</p>
+                </div>
             </div>
-            <button onclick="buttonClick1()">Click Me</button>
-            <input type="text" id="inc" value="0">
         </div>
 
-        <div class="card">
-            <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.GenreMovieTwo.poster_path" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"> @Model.GenreMovieTwo.title</h5>
-                <p class="card-text">@Model.GenreMovieTwo.overview</p>
+        <div class="w3-third" style="display:inline-block">
+            <div class="w3-card-4">
+                <img src="http://image.tmdb.org/t/p/w185/@Model.GenreMovieTwo.poster_path" alt="Car" onclick="buttonClick()" id="inc" style="width:100%">
+                <div class="w3-container">
+                    <p>@Model.GenreMovieTwo.title</p>
+                </div>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-            </div>
-            <button onclick="buttonClick()">Click Me</button>
-            <input type="text" id="inc1" value="0">
         </div>
+    </div>*@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
         }
 
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: #111;
+        }
+
+        .right {
+            right: 0;
+            background-color: #808080;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+            .centered img {
+                width: 300px;
+                border-radius: 100%;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="split left">
+        <div class="centered">
+            <img src="http://image.tmdb.org/t/p/w185/@Model.GenreMovieOne.poster_path" alt="Car" onclick="buttonClick1()" id="inc1" style="width:100%">
+            <h2>@Model.GenreMovieOne.title</h2>
+            <p>Some text.</p>
+        </div>
     </div>
+
+    <div class="split right">
+        <div class="centered">
+            <img src="http://image.tmdb.org/t/p/w185/@Model.GenreMovieTwo.poster_path" alt="Car" onclick="buttonClick()" id="inc" style="width:100%">
+            <h2>@Model.GenreMovieTwo.title</h2>
+            <p>Some text here too.</p>
+        </div>
+    </div>
+
 </body>
+</html>
+
+
+
 
 @section Scripts
 {
@@ -49,7 +103,7 @@
             console.log(i)
             if (i == 2) {
 
-                window.location.href = '@Url.Action("GenreMovieSelector", "Movie", new { id = Model.GenreMovieOne.title })' /* replace with success redirect*/
+                                window.location.href='@Html.Raw(@Url.Action("Index","Summary", new { movieTitle = Model.GenreMovieOne.title, id = Model.GenreMovieOne.id, posterPath = Model.GenreMovieOne.poster_path }))'
             }
             if ((i + j) == 2 && i == 1){
                 window.location.reload();
@@ -61,7 +115,7 @@
             document.getElementById('inc1').value = ++j;
             console.log(j)
             if (j == 2) {
-                window.location.href='@Url.Action("GenreMovieSelector", "Movie", new { id = Model.GenreMovieTwo.title })' /* replace with success redirect*/
+                                window.location.href='@Html.Raw(@Url.Action("Index","Summary", new { movieTitle = Model.GenreMovieOne.title, id = Model.GenreMovieTwo.id, posterPath = Model.GenreMovieTwo.poster_path }))'
             }
             if ((i + j) == 2 && j == 1) {
                 window.location.reload();
