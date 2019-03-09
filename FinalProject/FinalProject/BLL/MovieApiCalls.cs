@@ -22,9 +22,9 @@ namespace FinalProject.BLL
         {
             //var client = new RestClient("https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
 
-            int page = RandomNumberGenerator.GetNumberApiPage(5);
+            int[] page = RandomNumberGenerator.GetNumber(5);
             var client = new RestClient("https://api.themoviedb.org/3/movie/popular?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&page="
-                                         + page);
+                                         + page[0]);
 
             var request = new RestRequest(Method.GET);
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
@@ -32,28 +32,34 @@ namespace FinalProject.BLL
 
             var jsonResults = JsonConvert.DeserializeObject<MoviePopularityRoot>(response.Content);
 
-            int[] randomNumber = RandomNumberGenerator.GetNumberMovie(jsonResults.results.Count());
+            int[] randomNumber = RandomNumberGenerator.GetNumber(jsonResults.results.Count());
             MoviePopularityViewModel movies = new MoviePopularityViewModel
             {
                 MovieOne = jsonResults.results[randomNumber[0]],
                 MovieTwo = jsonResults.results[randomNumber[1]]
             };
 
-
-            string myObjectJson = new JavaScriptSerializer().Serialize(movies.MovieOne.title); //serialization not needed here, but it might be cool to create a class/folder just to pull out info from the cookie.
-            string myObjectJson2 = new JavaScriptSerializer().Serialize(movies.MovieTwo.title);
-        
+             List<MoviePopularityResults> toCookie = new List<MoviePopularityResults>();
+            toCookie.Add(movies.MovieOne);
+            toCookie.Add(movies.MovieTwo);
+            string CookieAsString = JsonConvert.SerializeObject(toCookie);
+            
             var cookie = HttpContext.Current.Request.Cookies.Get("information");
+
 
             if (cookie == null)
             {
-                HttpContext.Current.Response.SetCookie(new HttpCookie("information", myObjectJson));
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", CookieAsString));
             }
             else
-            {
-                string sendCookie = myObjectJson + myObjectJson2 + cookie;
-                string sendSerialize = new JavaScriptSerializer().Serialize(sendCookie);
-                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize.ToString()));
+            {   var get = HttpContext.Current.Request.Cookies["information"].Value;
+                
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                dynamic result = JsonConvert.DeserializeObject<MoviePopularityResults>(get);
+                
+                toCookie.Add(result);
+                string sendSerialize = new JavaScriptSerializer().Serialize(toCookie);
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize));
             }
                 
 
@@ -72,7 +78,7 @@ namespace FinalProject.BLL
             IRestResponse response = client.Execute<GenreMovieModel>(request);
 
             var GenreLookup = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
-            int[] randomNumber = RandomNumberGenerator.GetNumberMovie(GenreLookup.genres.Count());
+            int[] randomNumber = RandomNumberGenerator.GetNumber(GenreLookup.genres.Count());
 
             //List<Genre> GenreList = GenreLookup.genres.ToList();
             //Random rnd = new Random();
@@ -105,7 +111,7 @@ namespace FinalProject.BLL
             var deserial = new JsonDeserializer();
 
             var jsonResults = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
-            int[] randomNumber = RandomNumberGenerator.GetNumberMovie(jsonResults.results.Count());
+            int[] randomNumber = RandomNumberGenerator.GetNumber(jsonResults.results.Count());
 
             //List<GenreMovieResult> NewList = jsonResults.results.ToList();
             //Random rnd = new Random();
