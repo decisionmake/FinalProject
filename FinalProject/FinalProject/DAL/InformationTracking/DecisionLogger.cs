@@ -40,5 +40,23 @@ namespace FinalProject.DAL.InformationTracking
 
         }
 
+        public static void IndicisionTracker(MovieVotingHistoryDbContext db)
+        {
+            var allMovies = HttpContext.Current.Request.Cookies["information"].Value;
+            var listOfMoviesSkipped = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(allMovies);
+
+            //var numberOfAttempts = HttpContext.Current.Request.Cookies["information"].Values.Count / 2;
+            var numberOfAttempts = listOfMoviesSkipped.Count / 2;
+
+            var addSession = new Indecision_Tracker()
+            {
+                Attempts = numberOfAttempts
+            };
+
+            db.Attempt.Add(addSession);
+            db.SaveChanges();
+
+        }
+
     }
 }
