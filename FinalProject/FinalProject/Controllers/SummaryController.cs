@@ -26,48 +26,6 @@ namespace FinalProject.Controllers
             DecisionLogger.EditMovieDeciosionTracker(summary.MovieTitle, summary.id, summary.PosterPath, db);
             DecisionLogger.IndicisionTracker(db);
 
-            
-            //List<MovieHistory> movies = new List<MovieHistory>();
-            //movies = db.Movie.ToList();
-
-            //MovieHistory newMovie = new MovieHistory()
-            //{
-            //    MovieName = "Test",
-            //    NumberOfTimesChosen = 3
-            //};
-
-
-            //if (movies.Exists(d => d.MovieName == newMovie.MovieName))
-            //{
-            //    MovieHistory newMovie2 = new MovieHistory();
-
-            //    newMovie2 = movies.First(d => d.MovieName == movieTitle);
-            //    int timesWatched = newMovie2.NumberOfTimesChosen++;
-
-            //    db.Movie.Where(d => d.MovieName == movieTitle).ToList().ForEach(d => d.NumberOfTimesChosen = timesWatched);
-            //    db.SaveChanges();
-
-            //}
-            //else 
-            //{
-            //    MovieHistory newMovieToAdd = new MovieHistory()
-            //    {
-            //        MovieName = movieTitle,
-            //        NumberOfTimesChosen = 1
-            //    };
-
-            //    db.Movie.Add(newMovieToAdd);
-            //    db.SaveChanges();
-            //}
-
-
-
-            //var summary = new SummaryInformation
-            //{
-            //    MovieTitle = movieTitle,
-            //    id = id,
-            //    PosterPath = posterPath
-            //};
 
             return View(summary);
         }
