@@ -21,23 +21,56 @@
     }
 
     @{
-
-        var get = HttpContext.Current.Request.Cookies["information"].Value; //pulls cookie
-        var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<FinalProject.Models.MoviePopularity.MoviePopularityResults>>(get); //break the cookie into objects
-       
-
-        <p>You fought over these movies:</p> //iterate list
-        foreach (var item in result)
+        try
         {
+            var get = HttpContext.Current.Request.Cookies["information"].Value;
+            if (get != null)
+            {
 
-        <p>@item.title</p>
+
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
+
+
+                <p>You fought over these movies:</p> //iterate list
+                foreach (var item in result)
+                {
+
+                    <p>@item</p>
+
+                }
+
+                var c = new HttpCookie("information"); //erase cookie
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+        }
+        catch (Exception)
+        {
+            var get1 = HttpContext.Current.Request.Cookies["genreinfo"].Value; //pulls cookie
+
+
+            if (get1 != null)
+            {
+
+                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get1); //break the cookie into objects
+
+
+                <p>You fought over these movies:</p> //iterate list
+                foreach (var item in result)
+                {
+
+                    <p>@item</p>
+
+                }
+
+                var c = new HttpCookie("genreinfo"); //erase cookie
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
 
         }
 
-        var c = new HttpCookie("information"); //erase cookie
-        c.Expires= DateTime.Now.AddDays(-1);
-        Response.Cookies.Add(c);
 
 
-        }   
+    }
 </body>
