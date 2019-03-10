@@ -40,20 +40,35 @@ namespace FinalProject.BLL
             };
 
 
-            string myObjectJson = new JavaScriptSerializer().Serialize(movies.MovieOne.title); //serialization not needed here, but it might be cool to create a class/folder just to pull out info from the cookie.
-            string myObjectJson2 = new JavaScriptSerializer().Serialize(movies.MovieTwo.title);
-        
-            var cookie = HttpContext.Current.Request.Cookies.Get("information");
-
-            if (cookie == null)
+            List<string> toCookie = new List<string>(); //create list to send to cookie
+            toCookie.Add(movies.MovieOne.title); //add 2 movies
+            toCookie.Add(movies.MovieTwo.title);
+            string CookieAsString = JsonConvert.SerializeObject(toCookie); //serialize to json
+            
+            var cookie = HttpContext.Current.Request.Cookies.Get("information"); //pull cookie 
+            
+            if (cookie == null) //if no cookie, create, send two movies
             {
-                HttpContext.Current.Response.SetCookie(new HttpCookie("information", myObjectJson));
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", CookieAsString));
             }
             else
             {
-                string sendCookie = myObjectJson + myObjectJson2 + cookie;
-                string sendSerialize = new JavaScriptSerializer().Serialize(sendCookie);
-                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize.ToString()));
+
+                var get = HttpContext.Current.Request.Cookies["information"].Value; //if cookie exists, grab it
+              
+            
+
+                var result = JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
+                foreach (var item in result)
+                {
+                    toCookie.Add(item); //add old movie objects to list of new movie objects
+                }
+
+                
+                string sendSerialize = new JavaScriptSerializer().Serialize(toCookie); //serailze that 
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize)); //send cookie back up
+
+
             }
                 
 
@@ -94,8 +109,8 @@ namespace FinalProject.BLL
 
             var x = id;
             int[] y = {1,2,3,4,5};
-            int[] z = RandomNumberGenerator.GetNumberMovie(y.Count());
-            string testUrl = $"api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page={z[0]}&with_genres={x}";
+            int z = RandomNumberGenerator.GetNumberApiPage(y.Count());
+            string testUrl = $"api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page={z}&with_genres={x}";
             var client = new RestClient($"https://" + testUrl);
             var request = new RestRequest(Method.GET);
             request.AddParameter("undefined", "{}", ParameterType.RequestBody);
@@ -117,8 +132,33 @@ namespace FinalProject.BLL
                 GenreMovieOne = jsonResults.results[randomNumber[0]],
                 GenreMovieTwo = jsonResults.results[randomNumber[1]]
             };
+            List<string> toCookie = new List<string>(); //create list to send to cookie
+            toCookie.Add(GenreSelector.GenreMovieOne.title); //add 2 movies
+            toCookie.Add(GenreSelector.GenreMovieTwo.title);
+            string CookieAsString = JsonConvert.SerializeObject(toCookie); //serialize to json
 
-            return GenreSelector;
+            var cookie = HttpContext.Current.Request.Cookies.Get("genreinfo"); //pull cookie 
+
+            if (cookie == null) //if no cookie, create, send two movies
+            {
+                HttpContext.Current.Response.SetCookie(new HttpCookie("genreinfo", CookieAsString));
+            }
+            else
+            {
+
+                var get = HttpContext.Current.Request.Cookies["genreinfo"].Value; //if cookie exists, grab it
+
+                var result = JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
+                foreach (var item in result)
+                {
+                    toCookie.Add(item); //add old movie objects to list of new movie objects
+                }
+
+
+                string sendSerialize = new JavaScriptSerializer().Serialize(toCookie); //serailze that 
+                HttpContext.Current.Response.SetCookie(new HttpCookie("genreinfo", sendSerialize)); //send cookie back up
+            }
+                return GenreSelector;
         }
 
          

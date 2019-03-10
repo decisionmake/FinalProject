@@ -26,40 +26,15 @@ namespace FinalProject.Controllers
             DecisionLogger.EditMovieDeciosionTracker(summary.MovieTitle, summary.id, summary.PosterPath, db);
 
 
-            //if (ModelState.IsValid) hey, this works as an instance of serializing the object, but it dosent look to be easy to store multiple objects and have them easily deserialized. 
-      
+            
+            //List<MovieHistory> movies = new List<MovieHistory>();
+            //movies = db.Movie.ToList();
+
+            //MovieHistory newMovie = new MovieHistory()
             //{
-            //    string myObjectJson = new JavaScriptSerializer().Serialize(summary);
-            //    var cookie = Request.Cookies.Get("information").Value;
-
-            //    if (cookie == null)
-            //    {
-            //        Response.SetCookie(new HttpCookie("information", myObjectJson));
-            //    }
-            //    else
-            //    {
-            //        string sendCookie = myObjectJson + cookie;
-            //        string sendSerialize = new JavaScriptSerializer().Serialize(sendCookie);
-            //        Response.SetCookie(new HttpCookie("information", sendSerialize.ToString()));
-
-            //    }
-
-
-
-
-            //    // Save to database here
-            //    Session["LastSaved"] = DateTime.Now.ToShortTimeString();
-            //    TempData["EditResult"] = "Data successfully saved";
-            //    return RedirectToRoute(new { controller = "Home", action = "Index" });
-            //}
-            List<MovieHistory> movies = new List<MovieHistory>();
-            movies = db.Movie.ToList();
-
-            MovieHistory newMovie = new MovieHistory()
-            {
-                MovieName = "Test",
-                NumberOfTimesChosen = 3
-            };
+            //    MovieName = "Test",
+            //    NumberOfTimesChosen = 3
+            //};
 
 
             //if (movies.Exists(d => d.MovieName == newMovie.MovieName))
