@@ -27,14 +27,14 @@ namespace FinalProject.Controllers
 
 
             
-            List<MovieHistory> movies = new List<MovieHistory>();
-            movies = db.Movie.ToList();
+            //List<MovieHistory> movies = new List<MovieHistory>();
+            //movies = db.Movie.ToList();
 
-            MovieHistory newMovie = new MovieHistory()
-            {
-                MovieName = "Test",
-                NumberOfTimesChosen = 3
-            };
+            //MovieHistory newMovie = new MovieHistory()
+            //{
+            //    MovieName = "Test",
+            //    NumberOfTimesChosen = 3
+            //};
 
 
             //if (movies.Exists(d => d.MovieName == newMovie.MovieName))
