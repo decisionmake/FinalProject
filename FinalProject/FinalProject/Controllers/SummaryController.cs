@@ -24,7 +24,7 @@ namespace FinalProject.Controllers
         {
             
             DecisionLogger.EditMovieDeciosionTracker(summary.MovieTitle, summary.id, summary.PosterPath, db);
-
+            DecisionLogger.IndicisionTracker(db);
 
             
             //List<MovieHistory> movies = new List<MovieHistory>();
