@@ -1,16 +1,100 @@
 ﻿@model FinalProject.Models.FoodModels.FoodViewModel
+@*
+    @{
+        ViewBag.Title = "Index";
+    }
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<p>@Model.BusinessOne.Categories</p>
-<p>@Model.BusinessOne.Name</p>
+    <p>@Model.BusinessOne.Categories</p>
+    <p>@Model.BusinessOne.Name</p>
 
 
 
-<p>@Model.BusinessTwo.Categories.Count()</p>
-<p>@Model.BusinessTwo.Name</p>
+    <p>@Model.BusinessTwo.Categories</p>
+    <p>@Model.BusinessTwo.Name</p>
 
-<h2>Index</h2>
+    <h2>Index</h2>*@
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
+        }
+
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: #111;
+        }
+
+        .right {
+            right: 0;
+            background-color: #808080;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+            .centered img {
+                width: 300px;
+                border-radius: 100%;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="split left">
+        <div class="centered">
+            <img src="@Model.BusinessOne.ImageUrl" alt="Car" onclick="buttonClick1()" id="inc1" style="width:100%">
+            <h2>@Model.BusinessOne.Name</h2>
+            
+            <p><a href="@Model.BusinessOne.Url">Yelp link</a></p>
+            <p>
+                @{
+                    int x1 = Model.BusinessOne.Categories.Count(); //grabs all descriptors in title JSON
+                    for (int i = 0; i < x1; i++)
+                    {
+                    <p>@Model.BusinessOne.Categories[i].Title.ToString()</p>
+                }
+
+                }
+            </div>
+    </div>
+
+    <div class="split right">
+        <div class="centered">
+            <img src="@Model.BusinessTwo.ImageUrl" alt="Car" onclick="buttonClick()" id="inc" style="width:100%">
+            <h2>@Model.BusinessTwo.Name</h2>
+            <p><a href="@Model.BusinessOne.Url">Yelp link</a></p> 
+
+            <p>
+                @{
+                    int x = Model.BusinessTwo.Categories.Count();
+                    for (int i = 0; i < x; i++)
+                    {
+                    <p>@Model.BusinessTwo.Categories[i].Title.ToString()</p>
+                }
+
+            }
+
+        </div>
+    </div>
+
+</body>
+</html>

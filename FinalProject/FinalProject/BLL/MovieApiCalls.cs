@@ -55,20 +55,16 @@ namespace FinalProject.BLL
             {
 
                 var get = HttpContext.Current.Request.Cookies["information"].Value; //if cookie exists, grab it
-              
-            
-
+             
                 var result = JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
                 foreach (var item in result)
                 {
                     toCookie.Add(item); //add old movie objects to list of new movie objects
                 }
-
                 
                 string sendSerialize = new JavaScriptSerializer().Serialize(toCookie); //serailze that 
                 HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize)); //send cookie back up
-
-
+                
             }
                 
 

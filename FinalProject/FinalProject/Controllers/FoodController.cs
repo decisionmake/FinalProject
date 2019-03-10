@@ -36,7 +36,7 @@ namespace FinalProject.Controllers
 
             var client = new Yelp.Api.Client("4bgFll8jl2USaAQoHqIUIQ1QavZHqeYmRQwXXg_z5wUu4-nBDYdVmYwcr9ALDE-iUxMT_sGfhNOqIM_ZE0oVM9SQmmgo0YrpBLtYh5FIxOQaguiddnmU71RVxm6AXHYx");
             var results = await client.SearchBusinessesAllAsync(request);
-            int[] randomNumber = BLL.RandomNumberGenerator.GetNumberMovie(results.Businesses.Count());
+            int[] randomNumber = BLL.RandomNumberGenerator.GetNumberMovie(results.Businesses.Count() +1 );
             
 
             FoodViewModel business = new FoodViewModel
