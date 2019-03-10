@@ -26,7 +26,6 @@ namespace FinalProject.Controllers
             DecisionLogger.EditMovieDeciosionTracker(summary.MovieTitle, summary.id, summary.PosterPath, db);
             DecisionLogger.IndicisionTracker(db);
 
-
             return View(summary);
         }
     }

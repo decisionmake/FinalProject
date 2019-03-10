@@ -20,8 +20,6 @@ namespace FinalProject.BLL
 
         public static MoviePopularityViewModel GetPopularMovies()
         {
-            //var client = new RestClient("https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=d4d54b8d7ddedcc20679758413820443");
-
             int page = RandomNumberGenerator.GetNumberApiPage(5);
             var client = new RestClient("https://api.themoviedb.org/3/movie/popular?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&page="
                                          + page);
@@ -53,25 +51,19 @@ namespace FinalProject.BLL
             }
             else
             {
-
                 var get = HttpContext.Current.Request.Cookies["information"].Value; //if cookie exists, grab it
               
-            
-
                 var result = JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
                 foreach (var item in result)
                 {
                     toCookie.Add(item); //add old movie objects to list of new movie objects
                 }
-
                 
                 string sendSerialize = new JavaScriptSerializer().Serialize(toCookie); //serailze that 
                 HttpContext.Current.Response.SetCookie(new HttpCookie("information", sendSerialize)); //send cookie back up
 
-
             }
                 
-
                 return movies;
 
         }
