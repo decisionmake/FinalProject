@@ -22,8 +22,8 @@ namespace FinalProject.Controllers
         // GET: Summary
         public ActionResult Index(SummaryInformation summary)
         {
-
-            //DecisionLogger.EditMovieDeciosionTracker(movieTitle, id, posterPath, db);
+            
+            DecisionLogger.EditMovieDeciosionTracker(summary.MovieTitle, summary.id, summary.PosterPath, db);
 
 
             //if (ModelState.IsValid) hey, this works as an instance of serializing the object, but it dosent look to be easy to store multiple objects and have them easily deserialized. 
