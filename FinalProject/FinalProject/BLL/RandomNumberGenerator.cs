@@ -8,7 +8,7 @@ namespace FinalProject.BLL
 {
     public class RandomNumberGenerator
     {
-        public static int[] GetNumber(int maximum)
+        public static int[] GetNumberMovie(int maximum)
         {
             var numberGenerator = new Random();
 

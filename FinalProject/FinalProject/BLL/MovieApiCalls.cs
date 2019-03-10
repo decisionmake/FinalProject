@@ -32,7 +32,7 @@ namespace FinalProject.BLL
 
             var jsonResults = JsonConvert.DeserializeObject<MoviePopularityRoot>(response.Content);
 
-            int[] randomNumber = RandomNumberGenerator.GetNumber(jsonResults.results.Count());
+            int[] randomNumber = RandomNumberGenerator.GetNumberMovie(jsonResults.results.Count());
             MoviePopularityViewModel movies = new MoviePopularityViewModel
             {
                 MovieOne = jsonResults.results[randomNumber[0]],
@@ -53,7 +53,7 @@ namespace FinalProject.BLL
 
             if (cookie == null) //if no cookie, create, send two movies
             {
-                HttpContext.Current.Response.SetCookie(new HttpCookie("information", CookieAsString));
+                HttpContext.Current.Response.SetCookie(new HttpCookie("information", myObjectJson));
             }
             else
             {
@@ -91,7 +91,7 @@ namespace FinalProject.BLL
             IRestResponse response = client.Execute<GenreMovieModel>(request);
 
             var GenreLookup = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
-            int[] randomNumber = RandomNumberGenerator.GetNumber(GenreLookup.genres.Count());
+            int[] randomNumber = RandomNumberGenerator.GetNumberMovie(GenreLookup.genres.Count());
 
             //List<Genre> GenreList = GenreLookup.genres.ToList();
             //Random rnd = new Random();
@@ -113,7 +113,7 @@ namespace FinalProject.BLL
 
             var x = id;
             int[] y = {1,2,3,4,5};
-            int[] z = RandomNumberGenerator.GetNumber(y.Count() +1);
+            int[] z = RandomNumberGenerator.GetNumber(y.Count());
             string testUrl = $"api.themoviedb.org/3/discover/movie?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page={z[0]}&with_genres={x}";
             var client = new RestClient($"https://" + testUrl);
             var request = new RestRequest(Method.GET);
@@ -124,7 +124,7 @@ namespace FinalProject.BLL
             var deserial = new JsonDeserializer();
 
             var jsonResults = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
-            int[] randomNumber = RandomNumberGenerator.GetNumber(jsonResults.results.Count());
+            int[] randomNumber = RandomNumberGenerator.GetNumberMovie(jsonResults.results.Count());
 
             //List<GenreMovieResult> NewList = jsonResults.results.ToList();
             //Random rnd = new Random();

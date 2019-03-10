@@ -1,4 +1,5 @@
 ﻿using FinalProject.DAL;
+using FinalProject.DAL.InformationTracking;
 using FinalProject.Models.DAL_Objects;
 using FinalProject.Models.GenreSelection;
 using FinalProject.Models.MoviePopularity;
@@ -21,6 +22,8 @@ namespace FinalProject.Controllers
         // GET: Summary
         public ActionResult Index(SummaryInformation summary)
         {
+
+            //DecisionLogger.EditMovieDeciosionTracker(movieTitle, id, posterPath, db);
 
 
             
@@ -56,6 +59,7 @@ namespace FinalProject.Controllers
             //    db.Movie.Add(newMovieToAdd);
             //    db.SaveChanges();
             //}
+
 
 
             //var summary = new SummaryInformation
