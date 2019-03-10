@@ -40,9 +40,9 @@ namespace FinalProject.BLL
             };
 
 
-            List<MoviePopularityResults> toCookie = new List<MoviePopularityResults>(); //create list to send to cookie
-            toCookie.Add(movies.MovieOne); //add 2 movies
-            toCookie.Add(movies.MovieTwo);
+            List<string> toCookie = new List<string>(); //create list to send to cookie
+            toCookie.Add(movies.MovieOne.title); //add 2 movies
+            toCookie.Add(movies.MovieTwo.title);
             string CookieAsString = JsonConvert.SerializeObject(toCookie); //serialize to json
             
             var cookie = HttpContext.Current.Request.Cookies.Get("information"); //pull cookie 
@@ -58,7 +58,7 @@ namespace FinalProject.BLL
               
             
 
-                var result = JsonConvert.DeserializeObject<List<MoviePopularityResults>>(get); //break the cookie into objects
+                var result = JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
                 foreach (var item in result)
                 {
                     toCookie.Add(item); //add old movie objects to list of new movie objects
