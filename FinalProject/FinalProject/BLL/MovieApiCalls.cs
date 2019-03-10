@@ -46,11 +46,7 @@ namespace FinalProject.BLL
             string CookieAsString = JsonConvert.SerializeObject(toCookie); //serialize to json
             
             var cookie = HttpContext.Current.Request.Cookies.Get("information"); //pull cookie 
-
-
-        
-    
-
+            
             if (cookie == null) //if no cookie, create, send two movies
             {
                 HttpContext.Current.Response.SetCookie(new HttpCookie("information", CookieAsString));
@@ -136,8 +132,33 @@ namespace FinalProject.BLL
                 GenreMovieOne = jsonResults.results[randomNumber[0]],
                 GenreMovieTwo = jsonResults.results[randomNumber[1]]
             };
+            List<string> toCookie = new List<string>(); //create list to send to cookie
+            toCookie.Add(GenreSelector.GenreMovieOne.title); //add 2 movies
+            toCookie.Add(GenreSelector.GenreMovieTwo.title);
+            string CookieAsString = JsonConvert.SerializeObject(toCookie); //serialize to json
 
-            return GenreSelector;
+            var cookie = HttpContext.Current.Request.Cookies.Get("genreinfo"); //pull cookie 
+
+            if (cookie == null) //if no cookie, create, send two movies
+            {
+                HttpContext.Current.Response.SetCookie(new HttpCookie("genreinfo", CookieAsString));
+            }
+            else
+            {
+
+                var get = HttpContext.Current.Request.Cookies["genreinfo"].Value; //if cookie exists, grab it
+
+                var result = JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
+                foreach (var item in result)
+                {
+                    toCookie.Add(item); //add old movie objects to list of new movie objects
+                }
+
+
+                string sendSerialize = new JavaScriptSerializer().Serialize(toCookie); //serailze that 
+                HttpContext.Current.Response.SetCookie(new HttpCookie("genreinfo", sendSerialize)); //send cookie back up
+            }
+                return GenreSelector;
         }
 
          
