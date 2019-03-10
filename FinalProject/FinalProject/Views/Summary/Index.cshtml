@@ -21,16 +21,14 @@
     }
 
     @{
-        try
+        try // logic to switch between genre/popular depending on which cookies are present
         {
             var get = HttpContext.Current.Request.Cookies["information"].Value;
             if (get != null)
             {
 
-
                 var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
-
-
+                
                 <p>You fought over these movies:</p> //iterate list
                 foreach (var item in result)
                 {

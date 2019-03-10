@@ -52,7 +52,7 @@ namespace FinalProject.BLL
             else
             {
                 var get = HttpContext.Current.Request.Cookies["information"].Value; //if cookie exists, grab it
-              
+
                 var result = JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
                 foreach (var item in result)
                 {
