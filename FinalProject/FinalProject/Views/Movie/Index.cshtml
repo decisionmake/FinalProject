@@ -46,14 +46,14 @@
 </head>
 <body>
 
-    <div class="split left">
+    <div class="split left" onclick="location.href='@Url.Action("Genre","Movie")'">
         <div class="centered">
             <input type="button" value="Vote" onclick="location.href='@Url.Action("Genre","Movie")'">
             <p>You can pick which movie to fight over by fighting over a genre first</p>
             </div>
         </div>
 
-        <div class="split right">
+        <div class="split right" onclick="location.href='@Url.Action("Popular","Movie")'">
             <div class="centered">
                 <input type="button" value="Vote" onclick="location.href='@Url.Action("Popular","Movie")'">
                 <p>or go straight to fighting over which popular movie to watch</p>
