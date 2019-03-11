@@ -50,5 +50,16 @@ namespace FinalProject.Controllers
 
             return View(business);
         }
+
+        public ActionResult FoodSummary(FoodSummary selection)
+        {
+            
+
+            return View(selection);
+
+
+        }
+        
+
     }
 }

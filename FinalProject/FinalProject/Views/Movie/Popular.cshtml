@@ -5,9 +5,79 @@
 }
 
 
-<h2>Popular</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
+        }
 
-<div class="row">
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: #111;
+        }
+
+        .right {
+            right: 0;
+            background-color: #808080;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+            .centered img {
+                width: 300px;
+                border-radius: 100%;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="split left">
+        <div class="centered">
+            <img src="http://image.tmdb.org/t/p/w185/@Model.MovieOne.poster_path" alt="Car" onclick="buttonClickOptionOne()" id="inc1" style="width:100%">
+            <h2>@Model.MovieOne.title</h2>
+            <p>@Model.MovieOne.overview</p>
+            <p>Realease Date:       @Model.MovieOne.release_date</p>
+            <p>Popularity Ranking:  @Model.MovieOne.popularity</p>
+            <p>Voter Average:       @Model.MovieOne.vote_average</p>
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="centered">
+            <img src="http://image.tmdb.org/t/p/w185/@Model.MovieTwo.poster_path" alt="Car" onclick="buttonClickOptionTwo()" id="inc" style="width:100%">
+            <h2>@Model.MovieTwo.title</h2>
+            <p>@Model.MovieTwo.overview</p>
+            <p>Realease Date:       @Model.MovieTwo.release_date</p>
+            <p>Popularity Ranking:  @Model.MovieTwo.popularity</p>
+            <p>Voter Average:       @Model.MovieTwo.vote_average</p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+@*<div class="row">
     <div class="col-lg-6">
         <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.MovieOne.poster_path" alt="Card image cap">
         <div class="card-body">
@@ -38,7 +108,7 @@
             <input type="button" id="optioneOne" onclick="buttonClickOptionTwo()" value="Increment Value" />
         </div>
     </div>
-</div>
+</div>*@
 
 @section Scripts
 {
