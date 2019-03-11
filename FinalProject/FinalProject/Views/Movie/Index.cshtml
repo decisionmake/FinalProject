@@ -1,10 +1,67 @@
 ﻿
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
+        }
 
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: #111;
+        }
+
+        .right {
+            right: 0;
+            background-color: #808080;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+            .centered img {
+                width: 300px;
+                border-width: 30px;
+                border-color: antiquewhite;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="split left" onclick="location.href='@Url.Action("Genre","Movie")'">
+        <div class="centered">
+            <input type="button" value="Vote" onclick="location.href='@Url.Action("Genre","Movie")'">
+            <p>You can pick which movie to fight over by fighting over a genre first</p>
+            </div>
+        </div>
+
+        <div class="split right" onclick="location.href='@Url.Action("Popular","Movie")'">
+            <div class="centered">
+                <input type="button" value="Vote" onclick="location.href='@Url.Action("Popular","Movie")'">
+                <p>or go straight to fighting over which popular movie to watch</p>
+                </div>
+            </div>
+
+        </body>
+    </html>
 <body>
     <div class="card-deck"">
         <div class="card">

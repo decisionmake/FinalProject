@@ -1,0 +1,76 @@
+﻿@model FinalProject.Models.FoodModels.FoodSummary
+
+@{
+    ViewBag.Title = "FoodSummary";
+}
+
+<h2>FoodSummary</h2>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+            color: white;
+        }
+
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .left {
+            left: 0;
+            background-color: #111;
+        }
+
+        .right {
+            right: 0;
+            background-color: #808080;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+            .centered img {
+                width: 300px;
+                border-radius: 100%;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="split left">
+        <div class="centered">
+            <img src="@Model.Url" alt="Car" onclick="buttonClick1()" id="inc1" style="width:100%">
+            <h2>@Model.Name</h2>
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="centered">
+            <p>@Model.Category it is! see that wasnt so hard</p>
+            <p>Heres how to order</p>
+            <p>@Model.Phone</p>
+            <p>Heres where to go</p>
+            <p>@Model.Location</p>
+           
+
+        </div>
+    </div>
+
+
+
+</body>
+</html>
