@@ -53,7 +53,8 @@
 
             .centered img {
                 width: 300px;
-                border-radius: 100%;
+                border-width: 30px;
+                border-color: antiquewhite;
             }
     </style>
 </head>
@@ -61,9 +62,9 @@
 
     <div class="split left">
         <div class="centered">
-            <img src="@Model.BusinessOne.ImageUrl" alt="Car" onclick="buttonClick1()" id="inc1" style="width:100%">
+            <img src="@Model.BusinessOne.ImageUrl" alt="Car" onclick="buttonClickOptionOne()" id="inc1" style="width:100%">
             <h2>@Model.BusinessOne.Name</h2>
-            
+
             <p><a href="@Model.BusinessOne.Url">Yelp link</a></p>
             <p>
                 @{
@@ -75,26 +76,67 @@
 
                 }
             </div>
-    </div>
-
-    <div class="split right">
-        <div class="centered">
-            <img src="@Model.BusinessTwo.ImageUrl" alt="Car" onclick="buttonClick()" id="inc" style="width:100%">
-            <h2>@Model.BusinessTwo.Name</h2>
-            <p><a href="@Model.BusinessOne.Url">Yelp link</a></p> 
-
-            <p>
-                @{
-                    int x = Model.BusinessTwo.Categories.Count();
-                    for (int i = 0; i < x; i++)
-                    {
-                    <p>@Model.BusinessTwo.Categories[i].Title.ToString()</p>
-                }
-
-            }
-
         </div>
-    </div>
 
-</body>
-</html>
+        <div class="split right">
+            <div class="centered">
+                <img src="@Model.BusinessTwo.ImageUrl" alt="Car" onclick="buttonClickOptionTwo()" id="inc" style="width:100%">
+                <h2>@Model.BusinessTwo.Name</h2>
+                <p><a href="@Model.BusinessOne.Url">Yelp link</a></p>
+
+                <p>
+                    @{
+                        int x = Model.BusinessTwo.Categories.Count();
+                        for (int i = 0; i < x; i++)
+                        {
+                        <p>@Model.BusinessTwo.Categories[i].Title.ToString()</p>
+                    }
+
+                    }
+
+                </div>
+            </div>
+
+        </body>
+    </html>
+    @section Scripts
+{
+
+        <script type="text/javascript">
+
+        var i = 0;
+        function buttonClickOptionOne() {
+            i++;
+            console.log(i)
+            if (i == 2) {
+               
+                window.location.href='@Html.Raw(@Url.Action("FoodSummary","Food", new { url= Model.BusinessOne.ImageUrl, category = Model.BusinessOne.Categories[0].Title.ToString(), name= Model.BusinessOne.Name, location = Model.BusinessOne.Location.Address1.ToString() + " City: " + Model.BusinessOne.Location.City.ToString(), phone = Model.BusinessOne.Phone}))'
+            }
+            if ((i + j) == 2 && i == 1) {
+                //$.ajax({
+                //    url: "/Movie/SessionTracker" + "i", // change controller name here and pass proper role id.
+                //    type: "POST",
+                //});
+
+                window.location.reload();
+            }
+        }
+        var j = 0;
+        function buttonClickOptionTwo() {
+            j++;
+            console.log(j)
+            if (j == 2) {
+                @{ 
+                    var z = Model.BusinessTwo;
+                }
+                window.location.href='@Html.Raw(@Url.Action("FoodSummary","Food", new { url = Model.BusinessTwo.ImageUrl, category = Model.BusinessTwo.Categories[0].Title.ToString(), name = Model.BusinessTwo.Name, location = Model.BusinessTwo.Location.Address1.ToString() + " City: " + Model.BusinessTwo.Location.City.ToString(), phone = Model.BusinessTwo.Phone}))'
+
+                @*window.location.href='@Html.Raw(@Url.Action("Index", "Summary", new { movieTitle = Model.MovieTwo.title, id = Model.MovieTwo.id, posterPath = Model.MovieTwo.poster_path }))'*@
+            }
+            if ((i + j) == 2 && j == 1) {
+                window.location.reload();
+            }
+        }
+
+        </script>
+    }
