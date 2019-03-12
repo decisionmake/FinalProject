@@ -1,23 +1,16 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using FinalProject.Models;
-using RestSharp.Serialization.Json;
-using Newtonsoft.Json;
-using System.Net.Http;
-using System.Threading.Tasks;
-using static FinalProject.Models.GenreMovieModel;
-using FinalProject.Models.MoviePopularity;
-using FinalProject.Models.GenreSelection;
-using FinalProject.BLL;
+﻿using System.Web.Mvc;
+using FinalProject.Service;
 
 namespace FinalProject.Controllers
 {
     public class MovieController : Controller
     {
+        private readonly IMovieHistoryService _service;
+
+        public MovieController(IMovieHistoryService service)
+        {
+            _service = service;
+        }
 
         public ActionResult Index()
         {
@@ -26,17 +19,18 @@ namespace FinalProject.Controllers
 
         public ActionResult Genre()
         {
-            return View(MovieApiCalls.GetGenre());
+
+            return View(_service.GetGenre());
         }
 
         public ActionResult Popular()
         {
-            return View(MovieApiCalls.GetPopularMovies());
+            return View(_service.GetPopularMovies());
         }
 
         public ActionResult GenreMovieSelector(int id)
         {
-            return View(MovieApiCalls.GetByGenre(id));
+            return View(_service.GetByGenre(id));
         }
 
         

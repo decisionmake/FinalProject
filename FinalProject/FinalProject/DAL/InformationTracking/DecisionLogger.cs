@@ -9,7 +9,7 @@ namespace FinalProject.DAL.InformationTracking
 {
     public class DecisionLogger
     {
-        public static void EditMovieDeciosionTracker(string movieTitle, int id, string posterPath, MovieVotingHistoryDbContext db)
+        public void EditMovieDeciosionTracker(string movieTitle, int id, string posterPath, MovieVotingHistoryDbContext db)
         {
             List<MovieHistory> movies = new List<MovieHistory>();
             movies = db.Movie.ToList();
@@ -40,7 +40,7 @@ namespace FinalProject.DAL.InformationTracking
 
         }
 
-        public static void IndicisionTracker(MovieVotingHistoryDbContext db)
+        public void IndicisionTracker(MovieVotingHistoryDbContext db)
         {
             var allMovies = HttpContext.Current.Request.Cookies["information"].Value;
             var listOfMoviesSkipped = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(allMovies);

@@ -1,24 +1,22 @@
-﻿using FinalProject.Models;
+﻿using FinalProject.BLL;
+using FinalProject.Models;
 using FinalProject.Models.GenreSelection;
 using FinalProject.Models.MoviePopularity;
+using FinalProject.Service;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serialization.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Http.ModelBinding;
 using System.Web.Script.Serialization;
-using static FinalProject.Models.GenreMovieModel;
 using HttpCookie = System.Web.HttpCookie;
 
-namespace FinalProject.BLL
+namespace FinalProject.Service
 {
-    public class MovieApiCalls
+    public class MovieHistoryService : IMovieHistoryService
     {
-
-        public static MoviePopularityViewModel GetPopularMovies()
+        public MoviePopularityViewModel GetPopularMovies()
         {
             int page = RandomNumberGenerator.GetNumberApiPage(5);
             var client = new RestClient("https://api.themoviedb.org/3/movie/popular?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US&page="
@@ -68,7 +66,7 @@ namespace FinalProject.BLL
 
         }
 
-        public static GenreViewModel GetGenre()
+        public GenreViewModel GetGenre()
         {
             var client = new RestClient("https://api.themoviedb.org/3/genre/movie/list?api_key=d4d54b8d7ddedcc20679758413820443&language=en-US");
 
@@ -96,7 +94,7 @@ namespace FinalProject.BLL
             return selection;
         }
 
-        public static GenreSelectorViewModel GetByGenre(int id)
+        public GenreSelectorViewModel GetByGenre(int id)
         {
 
             var x = id;
@@ -152,8 +150,5 @@ namespace FinalProject.BLL
             }
                 return GenreSelector;
         }
-
-         
-
     }
 }
