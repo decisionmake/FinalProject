@@ -238,6 +238,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Services\ISummaryService.cs" />
     <Compile Include="Services\MovieHistoryService.cs" />
     <Compile Include="BLL\RandomNumberGenerator.cs" />
     <Compile Include="Controllers\FoodController.cs" />
@@ -270,6 +271,7 @@
     <Compile Include="Models\SummaryPage\SummaryInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IMovieHistoryService.cs" />
+    <Compile Include="Services\SummaryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
