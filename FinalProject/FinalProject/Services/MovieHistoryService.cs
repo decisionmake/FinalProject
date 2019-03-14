@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serialization.Json;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -35,7 +36,6 @@ namespace FinalProject.Service
                 MovieTwo = jsonResults.results[randomNumber[1]]
             };
 
-
             List<string> toCookie = new List<string>(); //create list to send to cookie
             toCookie.Add(movies.MovieOne.title); //add 2 movies
             toCookie.Add(movies.MovieTwo.title);
@@ -49,6 +49,7 @@ namespace FinalProject.Service
             }
             else
             {
+                
                 var get = HttpContext.Current.Request.Cookies["information"].Value; //if cookie exists, grab it
 
                 var result = JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
@@ -151,4 +152,7 @@ namespace FinalProject.Service
                 return GenreSelector;
         }
     }
+
 }
+
+

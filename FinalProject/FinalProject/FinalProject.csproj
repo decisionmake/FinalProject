@@ -238,6 +238,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Models\DAL_Objects\RejectedMovieList.cs" />
     <Compile Include="Services\ISummaryService.cs" />
     <Compile Include="Services\MovieHistoryService.cs" />
     <Compile Include="BLL\RandomNumberGenerator.cs" />
