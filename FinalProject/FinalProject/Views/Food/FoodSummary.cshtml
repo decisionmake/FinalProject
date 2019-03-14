@@ -45,7 +45,7 @@
 
             .centered img {
                 width: 300px;
-                border-width: 30px;
+                border-radius: 100%;
             }
     </style>
 </head>
@@ -65,18 +65,10 @@
             <p>@Model.Phone</p>
             <p>Heres where to go</p>
             <p>@Model.Location</p>
-            <a href="" class="link">Link will be filled by javascript</a>
- 
-            <script>
-                var link = "http://google.com";
-                $(document).ready(function () {
-                    $('.link').attr('href', link);
-                });
-            </script>
+           
+
         </div>
-        
     </div>
-    
 
 
 
