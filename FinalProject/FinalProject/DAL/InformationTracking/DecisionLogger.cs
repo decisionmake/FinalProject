@@ -15,6 +15,7 @@ namespace FinalProject.DAL.InformationTracking
         {
             List<MovieHistory> movies = new List<MovieHistory>();
             movies = db.Movie.ToList();
+            HttpContext.Current.Session["SelectedMovie"] = movieTitle;
 
             if (movies.Exists(d => d.MovieName == movieTitle))
             {
@@ -45,48 +46,49 @@ namespace FinalProject.DAL.InformationTracking
         public void IndicisionTracker(MovieVotingHistoryDbContext db)
         {
             int numberOfAttempts = 0;
-
-            if (HttpContext.Current.Session["Popular"] as List<MoviePopularityViewModel> != null)
-            {
-                var allMovies = HttpContext.Current.Session["Popular"] as List<MoviePopularityViewModel>;
-                numberOfAttempts = allMovies.Count / 2;
-                var addSession = new Indecision_Tracker()
-                {
-                    Attempts = numberOfAttempts
-                };
-                db.Attempt.Add(addSession);
-                db.SaveChanges();
-                var id = db.Attempt.Count();
-                AddRejectedMovies(id, allMovies);
-            }
-            else if (HttpContext.Current.Session["Genre"] as List<GenreSelectorViewModel> != null)
-            {
-                var allMovies = HttpContext.Current.Session["Genre"] as List<GenreSelectorViewModel>;
-                numberOfAttempts = allMovies.Count / 2;
-
-            }
-
+            List<string> allMovies = HttpContext.Current.Session["Info"] as List<string>;
+            numberOfAttempts = allMovies.Count / 2;
             var addSession = new Indecision_Tracker()
             {
                 Attempts = numberOfAttempts
             };
+
             db.Attempt.Add(addSession);
             db.SaveChanges();
-            var id = db.Attempt.Count();
-            AddRejectedMoviesByGenre(id, allMovies);
+            int id = db.Attempt.Count();
+            HttpContext.Current.Session["SessionId"] = id.ToString();
+
+            allMovies.Count();
+            if (allMovies[allMovies.Count() -1 ] == HttpContext.Current.Session["SelectedMovie"] as string)
+            {
+                allMovies.Remove(allMovies[allMovies.Count() - 1]);
+            }
+            else if (allMovies[allMovies.Count() - 2] == HttpContext.Current.Session["SelectedMovie"] as string)
+            {
+                allMovies.Remove(allMovies[allMovies.Count() - 2]);
+            }
+                
+
+            AddRejectedMoviesByGenre(allMovies, db);
+
 
         }
 
-        public void AddRejectedMoviesByGenre (int id, List<GenreSelectorViewModel> movies)
+        public void AddRejectedMoviesByGenre (List<string> movies, MovieVotingHistoryDbContext db)
         {
+            string movieID = HttpContext.Current.Session["SessionId"] as string;
+            int.TryParse(movieID, out int id);
+
             foreach (var movie in movies)
             {
-                var addMoives = new RejectedMovieList
+                var addMoive = new RejectedMovieList
                 {
                     Indecision_TrackerID = id,
-                    MoviesSkipped = movie.Tile
+                    MoviesSkipped = movie
                 };
-            }
+                db.RejectedMovies.Add(addMoive);
+                db.SaveChanges();
+            };
 
         }
     }
