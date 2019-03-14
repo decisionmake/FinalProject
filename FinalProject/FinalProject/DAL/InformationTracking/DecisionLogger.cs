@@ -1,4 +1,6 @@
 ﻿using FinalProject.Models.DAL_Objects;
+using FinalProject.Models.GenreSelection;
+using FinalProject.Models.MoviePopularity;
 using FinalProject.Models.SummaryPage;
 using System;
 using System.Collections.Generic;
@@ -42,31 +44,49 @@ namespace FinalProject.DAL.InformationTracking
 
         public void IndicisionTracker(MovieVotingHistoryDbContext db)
         {
-            var allMovies = HttpContext.Current.Request.Cookies["information"].Value;
-            var listOfMoviesSkipped = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(allMovies);
+            int numberOfAttempts = 0;
 
-            //var numberOfAttempts = HttpContext.Current.Request.Cookies["information"].Values.Count / 2;
-            var numberOfAttempts = listOfMoviesSkipped.Count / 2;
+            if (HttpContext.Current.Session["Popular"] as List<MoviePopularityViewModel> != null)
+            {
+                var allMovies = HttpContext.Current.Session["Popular"] as List<MoviePopularityViewModel>;
+                numberOfAttempts = allMovies.Count / 2;
+                var addSession = new Indecision_Tracker()
+                {
+                    Attempts = numberOfAttempts
+                };
+                db.Attempt.Add(addSession);
+                db.SaveChanges();
+                var id = db.Attempt.Count();
+                AddRejectedMovies(id, allMovies);
+            }
+            else if (HttpContext.Current.Session["Genre"] as List<GenreSelectorViewModel> != null)
+            {
+                var allMovies = HttpContext.Current.Session["Genre"] as List<GenreSelectorViewModel>;
+                numberOfAttempts = allMovies.Count / 2;
+
+            }
 
             var addSession = new Indecision_Tracker()
             {
                 Attempts = numberOfAttempts
             };
-
-            var test = db.Attempt.Count();
             db.Attempt.Add(addSession);
-            var id = db.Attempt.Where(n => n.ID == addSession.ID).FirstOrDefault();
             db.SaveChanges();
-            test = db.Attempt.Count();
+            var id = db.Attempt.Count();
+            AddRejectedMoviesByGenre(id, allMovies);
+
         }
 
-        public void AddRejectedMovies()
+        public void AddRejectedMoviesByGenre (int id, List<GenreSelectorViewModel> movies)
         {
-
-            var addMoives = new List<RejectedMovieList>
+            foreach (var movie in movies)
             {
-
-            };
+                var addMoives = new RejectedMovieList
+                {
+                    Indecision_TrackerID = id,
+                    MoviesSkipped = movie.Tile
+                };
+            }
 
         }
     }
