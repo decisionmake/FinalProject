@@ -14,6 +14,7 @@ namespace FinalProject.Controllers
 
         public ActionResult Index()
         {
+            Session.Clear();
             return View();
         }
 
