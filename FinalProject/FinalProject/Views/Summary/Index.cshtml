@@ -57,47 +57,42 @@
             @{
                 try // logic to switch between genre/popular depending on which cookies are present
                 {
-                    var get = HttpContext.Current.Request.Cookies["information"].Value;
+                    var get = HttpContext.Current.Session["Popular"];
                     if (get != null)
                     {
 
-                        var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
-
+                        List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["Popular"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
                         <p>You fought over these movies:</p> //iterate list
-                        foreach (var item in result)
+                        foreach (var item in x)
                         {
+                            <p>You fought over these movies:</p> //iterate list
 
                             <p>@item</p>
 
                         }
 
-                        var c = new HttpCookie("information"); //erase cookie
-                        c.Expires = DateTime.Now.AddDays(-1);
-                        Response.Cookies.Add(c);
+
                     }
                 }
                 catch (Exception)
                 {
-                    var get1 = HttpContext.Current.Request.Cookies["genreinfo"].Value; //pulls cookie
+                    List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["Popular"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
 
 
-                    if (get1 != null)
+
+
+                    if (x != null)
                     {
 
-                        var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get1); //break the cookie into objects
-
-
                         <p>You fought over these movies:</p> //iterate list
-                        foreach (var item in result)
+                        foreach (var item in x)
                         {
 
                             <p>@item</p>
 
                         }
 
-                        var c = new HttpCookie("genreinfo"); //erase cookie
-                        c.Expires = DateTime.Now.AddDays(-1);
-                        Response.Cookies.Add(c);
+
                     }
 
                 }

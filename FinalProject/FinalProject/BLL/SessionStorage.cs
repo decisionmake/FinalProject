@@ -13,12 +13,13 @@ namespace FinalProject.BLL
         public static void StorePopular(MoviePopularityViewModel movies)
         {
 
-            List<MoviePopularityViewModel> list = new List<MoviePopularityViewModel>();
-            List<MoviePopularityViewModel> x = HttpContext.Current.Session["Popular"] as List<MoviePopularityViewModel>;
+            List<string> list = new List<string>();
+            List<string> x = HttpContext.Current.Session["Info"] as List<string>;
             if (x == null)
             {
-                list.Add(movies);
-                HttpContext.Current.Session.Add("Popular", list);
+                list.Add(movies.MovieOne.title);
+                list.Add(movies.MovieTwo.title);
+                HttpContext.Current.Session.Add("Info", list);
             }
             else
             {
@@ -26,21 +27,25 @@ namespace FinalProject.BLL
                 {
                     list.Add(item);
                 };
-                list.Add(movies);
-                HttpContext.Current.Session.Add("Popular", list);
+                list.Add(movies.MovieOne.title);
+                list.Add(movies.MovieTwo.title);
+
+                HttpContext.Current.Session.Add("Info", list);
             }
-            HttpContext.Current.Session.Add("Popular", list);
-            List<MoviePopularityViewModel> p = HttpContext.Current.Session["Popular"] as List<MoviePopularityViewModel>;
+            HttpContext.Current.Session.Add("Info", list);
+            List<string> p = HttpContext.Current.Session["Info"] as List<string>;
         }
 
         public static void StoreGenre(GenreSelectorViewModel movies)
         {
-            List<GenreSelectorViewModel> list = new List<GenreSelectorViewModel>();
-            List<GenreSelectorViewModel> x = HttpContext.Current.Session["Genre"] as List<GenreSelectorViewModel>;
+            List<string> list = new List<string>();
+            List<string> x = HttpContext.Current.Session["Info"] as List<string>;
             if (x == null)
             {
-                list.Add(movies);
-                HttpContext.Current.Session.Add("Genre", list);
+                list.Add(movies.GenreMovieOne.title);
+                list.Add(movies.GenreMovieOne.title);
+
+                HttpContext.Current.Session.Add("Info", list);
             }
             else
             {
@@ -48,11 +53,13 @@ namespace FinalProject.BLL
                 {
                     list.Add(item);
                 };
-                list.Add(movies);
-                HttpContext.Current.Session.Add("Genre", list);
+                list.Add(movies.GenreMovieOne.title);
+                list.Add(movies.GenreMovieTwo.title);
+
+                HttpContext.Current.Session.Add("Info", list);
             }
-            HttpContext.Current.Session.Add("Genre", list);
-            List<GenreSelectorViewModel> p = HttpContext.Current.Session["Genre"] as List<GenreSelectorViewModel>;
+            HttpContext.Current.Session.Add("Info", list);
+            List<string> p = HttpContext.Current.Session["Info"] as List<string>;
 
         }
 
