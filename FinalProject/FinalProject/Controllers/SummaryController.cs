@@ -18,8 +18,6 @@ namespace FinalProject.Controllers
     public class SummaryController : Controller
     {
 
-        //private MovieVotingHistoryDbContext db = new MovieVotingHistoryDbContext();
-
         private readonly ISummaryService _service;
 
         public SummaryController(ISummaryService service)
