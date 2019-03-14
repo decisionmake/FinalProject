@@ -53,10 +53,21 @@ namespace FinalProject.DAL.InformationTracking
                 Attempts = numberOfAttempts
             };
 
+            var test = db.Attempt.Count();
             db.Attempt.Add(addSession);
+            var id = db.Attempt.Where(n => n.ID == addSession.ID).FirstOrDefault();
             db.SaveChanges();
-
+            test = db.Attempt.Count();
         }
 
+        public void AddRejectedMovies()
+        {
+
+            var addMoives = new List<RejectedMovieList>
+            {
+
+            };
+
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.SessionState;
 
 namespace FinalProject.Controllers
 {
@@ -10,7 +11,7 @@ namespace FinalProject.Controllers
     {
         public ActionResult Index()
         {
-            Session.Add("test", "test");
+
             return View();
         }
 

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serialization.Json;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -102,4 +103,7 @@ namespace FinalProject.Service
             return GenreSelector;
         }
     }
+
 }
+
+
