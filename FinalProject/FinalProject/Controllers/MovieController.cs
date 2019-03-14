@@ -26,11 +26,31 @@ namespace FinalProject.Controllers
 
         public ActionResult Genre()
         {
+
             return View(MovieApiCalls.GetGenre());
         }
 
         public ActionResult Popular()
         {
+            //List<MoviePopularityViewModel> list = new List<MoviePopularityViewModel>();
+            //List<MoviePopularityViewModel> x = Session["information"] as List<MoviePopularityViewModel>;
+            //if (x == null)
+            //{
+            //    list.Add(MovieApiCalls.GetPopularMovies());
+            //    Session.Add("information", list);
+            //}
+            //else
+            //{
+            //    foreach (var item in x)
+            //    {
+            //        list.Add(item);
+            //    };
+
+            //    Session.Add("information", list);
+            //}
+            //Session.Add("information", list);
+            //List<MoviePopularityViewModel> p = Session["information"] as List<MoviePopularityViewModel>;
+
             return View(MovieApiCalls.GetPopularMovies());
         }
 
