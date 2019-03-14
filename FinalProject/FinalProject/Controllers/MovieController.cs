@@ -9,6 +9,7 @@ namespace FinalProject.Controllers
 
         public MovieController(IMovieHistoryService service)
         {
+           
             _service = service;
         }
 

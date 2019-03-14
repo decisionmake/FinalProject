@@ -17,6 +17,7 @@ namespace FinalProject.DAL
 
         public DbSet<MovieHistory> Movie { get; set; }
         public DbSet<Indecision_Tracker> Attempt { get; set; }
+        public DbSet<RejectedMovieList> RejectedMovies { get; set; }
 
     }
 }
