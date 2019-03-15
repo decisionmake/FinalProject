@@ -30,7 +30,7 @@ namespace FinalProject.Controllers
         {
             _service.TrackMovie(summary.MovieTitle, summary.id, summary.PosterPath, _service.db());
             _service.TrackIndecision(_service.db());
-
+            summary.AverageSelected = _service.GetAverageTimeSelected(_service.db());
             return View(summary);
         }
     }
