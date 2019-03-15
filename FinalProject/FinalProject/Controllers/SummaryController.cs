@@ -18,8 +18,6 @@ namespace FinalProject.Controllers
     public class SummaryController : Controller
     {
 
-        //private MovieVotingHistoryDbContext db = new MovieVotingHistoryDbContext();
-
         private readonly ISummaryService _service;
 
         public SummaryController(ISummaryService service)
@@ -32,7 +30,7 @@ namespace FinalProject.Controllers
         {
             _service.TrackMovie(summary.MovieTitle, summary.id, summary.PosterPath, _service.db());
             _service.TrackIndecision(_service.db());
-
+            summary.AverageSelected = _service.GetAverageTimeSelected(_service.db());
             return View(summary);
         }
     }
