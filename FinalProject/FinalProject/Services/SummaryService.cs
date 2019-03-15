@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using FinalProject.BLL;
 using FinalProject.DAL;
 using FinalProject.DAL.InformationTracking;
 
@@ -9,6 +10,12 @@ namespace FinalProject.Services
 {
     public class SummaryService : ISummaryService
     {
+        public decimal GetAverageTimeSelected(MovieVotingHistoryDbContext db)
+        {
+            var getAverageSelected = new Analytics();
+            return getAverageSelected.AverageTimesSelected(db);
+        }
+
         public MovieVotingHistoryDbContext db()
         {
             MovieVotingHistoryDbContext db = new MovieVotingHistoryDbContext();

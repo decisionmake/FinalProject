@@ -238,7 +238,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+
     <Compile Include="Models\DAL_Objects\MovieFood.cs" />
+
+    <Compile Include="BLL\Analytics.cs" />
+
     <Compile Include="Models\DAL_Objects\RejectedMovieList.cs" />
     <Compile Include="BLL\SessionStorage.cs" />
     <Compile Include="Services\FoodService.cs" />
