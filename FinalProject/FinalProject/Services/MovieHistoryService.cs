@@ -81,10 +81,6 @@ namespace FinalProject.Service
             var jsonResults = JsonConvert.DeserializeObject<GenreRootObject>(response.Content);
             int[] randomNumber = RandomNumberGenerator.GetNumberMovie(jsonResults.results.Count());
 
-            //List<GenreMovieResult> NewList = jsonResults.results.ToList();
-            //Random rnd = new Random();
-            //int index = rnd.Next(NewList.Count);
-            //int index2 = rnd.Next(NewList.Count);
 
             GenreSelectorViewModel GenreSelector = new GenreSelectorViewModel
             {
