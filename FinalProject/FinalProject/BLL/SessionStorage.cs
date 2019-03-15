@@ -10,8 +10,10 @@ namespace FinalProject.BLL
 
     public class SessionStorage
     {
+
         public static void StorePopular(MoviePopularityViewModel movies)
         {
+
 
             List<string> list = new List<string>();
             List<string> x = HttpContext.Current.Session["Info"] as List<string>;
@@ -43,7 +45,7 @@ namespace FinalProject.BLL
             if (x == null)
             {
                 list.Add(movies.GenreMovieOne.title);
-                list.Add(movies.GenreMovieOne.title);
+                list.Add(movies.GenreMovieTwo.title);
 
                 HttpContext.Current.Session.Add("Info", list);
             }

@@ -65,7 +65,27 @@
             <p>@Model.Phone</p>
             <p>Heres where to go</p>
             <p>@Model.Location</p>
-           
+           @{ List<string> list = new List<string>();
+               List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
+               if (moviefood == null)
+               {
+
+                   list.Add(Model.Name);
+
+               }
+               else
+               {
+                   foreach (var item in moviefood)
+                   {
+                       list.Add(item);
+                   }
+
+                   list.Add(Model.Name);
+                   HttpContext.Current.Session.Add("moviefood", list);
+
+               }
+
+                         }
 
         </div>
     </div>

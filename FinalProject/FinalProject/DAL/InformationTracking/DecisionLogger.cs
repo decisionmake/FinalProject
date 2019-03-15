@@ -23,6 +23,7 @@ namespace FinalProject.DAL.InformationTracking
 
                 MovieHistory movieToBeUpdatedInDatabase = db.Movie.Where(d => d.MovieName == movieTitle).First();
                 movieToBeUpdatedInDatabase.NumberOfTimesChosen = timesWatched;
+                
                 db.SaveChanges();
 
             }
@@ -33,7 +34,7 @@ namespace FinalProject.DAL.InformationTracking
                     MovieName = movieTitle,
                     NumberOfTimesChosen = 1
                 };
-
+                
                 db.Movie.Add(newMovieToAdd);
                 db.SaveChanges();
             }
@@ -42,11 +43,10 @@ namespace FinalProject.DAL.InformationTracking
 
         public void IndicisionTracker(MovieVotingHistoryDbContext db)
         {
-            var allMovies = HttpContext.Current.Request.Cookies["information"].Value;
-            var listOfMoviesSkipped = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(allMovies);
+            List<string> allMovies = HttpContext.Current.Session["info"] as List<string>;
 
             //var numberOfAttempts = HttpContext.Current.Request.Cookies["information"].Values.Count / 2;
-            var numberOfAttempts = listOfMoviesSkipped.Count / 2;
+            var numberOfAttempts = allMovies.Count / 2;
 
             var addSession = new Indecision_Tracker()
             {
@@ -67,6 +67,20 @@ namespace FinalProject.DAL.InformationTracking
             {
 
             };
+
+        }
+
+        public void AddMovieFood(MovieVotingHistoryDbContext db)
+        {
+
+            List<string> list = HttpContext.Current.Session["moviefood"] as List<string>;
+            var addList = new MovieFood();
+            {
+                addList.MovieSelection = list.FirstOrDefault();
+                addList.FoodSelection = list.LastOrDefault();
+            }
+            db.CompareMovieToFood.Add(addList);
+
 
         }
     }

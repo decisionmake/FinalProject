@@ -55,17 +55,39 @@
             <p>You selected @Model.MovieTitle</p>
             <p>the battle is over</p>
             @{
+                List<string> list = new List<string>();
+                List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
+                if (moviefood == null)
+                {
+
+                    list.Add(Model.MovieTitle);
+                    HttpContext.Current.Session.Add("moviefood", list);
+
+                }
+                else
+                {
+                    foreach (var item in moviefood)
+                    {
+                        list.Add(item);
+                    }
+
+                    list.Add(Model.MovieTitle);
+
+                }
+                HttpContext.Current.Session.Add("moviefood", list);
+
                 try // logic to switch between genre/popular depending on which cookies are present
                 {
-                    var get = HttpContext.Current.Session["Popular"];
+                    List<string> get = HttpContext.Current.Session["info"] as List<string>;
                     if (get != null)
                     {
 
-                        List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["Popular"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
+                        //List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
                         <p>You fought over these movies:</p> //iterate list
-                        foreach (var item in x)
+                        foreach (var item in get)
+
                         {
-                            <p>You fought over these movies:</p> //iterate list
+                            //iterate list
 
                             <p>@item</p>
 
@@ -76,7 +98,7 @@
                 }
                 catch (Exception)
                 {
-                    List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["Popular"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
+                    List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
 
 
 

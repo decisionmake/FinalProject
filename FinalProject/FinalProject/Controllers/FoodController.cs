@@ -8,47 +8,29 @@ using System.Web.Mvc;
 using FinalProject.BLL;
 using Yelp.Api.Models;
 using FinalProject.Models.FoodModels;
+using FinalProject.Services;
+using System.Threading.Tasks;
 
 namespace FinalProject.Controllers
 {
     public class FoodController : Controller
     {
-        
+        private readonly IFoodService _service;
+
+        public FoodController(IFoodService service)
+        {
+            _service = service;
+        }
+
         // GET: Food
         [HttpPost]
-        public async System.Threading.Tasks.Task<ActionResult> Index(string zip)
+        public async Task<ActionResult> Index(string zip)
         {
 
-            //var client = new RestClient("https://api.yelp.com/v3/businesses/search?term=Clayton+Bicycle+Center&location=5411+Clayton+Rd%2c+Clayton%2c+CA+94517%2c+US");
-            //var request = new RestRequest(Method.GET);
-            //request.AddHeader("Cache-Control", "no-cache");
-            //request.AddHeader("Authorization", "Bearer 4bgFll8jl2USaAQoHqIUIQ1QavZHqeYmRQwXXg_z5wUu4-nBDYdVmYwcr9ALDE-iUxMT_sGfhNOqIM_ZE0oVM9SQmmgo0YrpBLtYh5FIxOQaguiddnmU71RVxm6AXHYx ");
-            //var response = client.Execute(request);
-            //Console.Write(response.Content);
 
-            var request = new Yelp.Api.Models.SearchRequest();
-            request.Categories = "Restaurants";
-            request.Location = $"{zip}"; 
-            request.MaxResults = 40;
-            request.OpenNow = true;
+             var x = await _service.Index(zip);
             
-            
-
-            var client = new Yelp.Api.Client("4bgFll8jl2USaAQoHqIUIQ1QavZHqeYmRQwXXg_z5wUu4-nBDYdVmYwcr9ALDE-iUxMT_sGfhNOqIM_ZE0oVM9SQmmgo0YrpBLtYh5FIxOQaguiddnmU71RVxm6AXHYx");
-            var results = await client.SearchBusinessesAllAsync(request);
-            int[] randomNumber = BLL.RandomNumberGenerator.GetNumberMovie(results.Businesses.Count() +1 );
-            
-
-            FoodViewModel business = new FoodViewModel
-            {
-                BusinessOne = results.Businesses[randomNumber[0]],
-                BusinessTwo = results.Businesses[randomNumber[1]]
-                
-            };
-            
-
-
-            return View(business);
+            return View(x);
         }
 
         public ActionResult FoodSummary(FoodSummary selection)
