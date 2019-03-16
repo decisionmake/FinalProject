@@ -107,7 +107,7 @@ namespace FinalProject.DAL.InformationTracking
                 addList.FoodSelection = list.LastOrDefault();
             }
             db.CompareMovieToFood.Add(addList);
-            db.SaveChanges();
+            //db.SaveChanges();
 
 
         }
