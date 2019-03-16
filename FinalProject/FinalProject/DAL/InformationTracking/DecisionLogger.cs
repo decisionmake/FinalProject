@@ -46,8 +46,11 @@ namespace FinalProject.DAL.InformationTracking
 
         public void IndicisionTracker(MovieVotingHistoryDbContext db)
         {
-
+            int numberOfAttempts = 0;
+            List<string> allMovies = HttpContext.Current.Session["Info"] as List<string>;
+            numberOfAttempts = allMovies.Count / 2;
             var addSession = new Indecision_Tracker()
+            
             {
                 Attempts = numberOfAttempts
             };
@@ -86,11 +89,14 @@ namespace FinalProject.DAL.InformationTracking
                     MoviesSkipped = movie
                 };
                 db.RejectedMovies.Add(addMoive);
-                db.SaveChanges();
+                //db.SaveChanges();
             };
 
         }
+        public void AddFood(MovieVotingHistoryDbContext db)
+        {
 
+        }
         public void AddMovieFood(MovieVotingHistoryDbContext db)
         {
 
@@ -101,6 +107,7 @@ namespace FinalProject.DAL.InformationTracking
                 addList.FoodSelection = list.LastOrDefault();
             }
             db.CompareMovieToFood.Add(addList);
+            db.SaveChanges();
 
 
         }
