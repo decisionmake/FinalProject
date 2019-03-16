@@ -16,30 +16,27 @@ namespace FinalProject.Controllers
     public class FoodController : Controller
     {
         private readonly IFoodService _service;
+        
 
         public FoodController(IFoodService service)
         {
             _service = service;
         }
-
+       
         // GET: Food
         [HttpPost]
         public async Task<ActionResult> Index(string zip)
         {
-
-
-             var x = await _service.Index(zip);
             
-            return View(x);
+            return View(await _service.Index(zip));
         }
 
         public ActionResult FoodSummary(FoodSummary selection)
         {
-            
-
+            _service.AddFood(selection, _service.db());
+            _service.TrackFood(_service.db());
             return View(selection);
-
-
+            
         }
         
 

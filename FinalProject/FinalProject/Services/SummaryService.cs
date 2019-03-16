@@ -36,5 +36,12 @@ namespace FinalProject.Services
             decisionLogger.EditMovieDeciosionTracker(movieTitle, id, posterPath, db);
 
         }
+
+        //public void TrackFood(MovieVotingHistoryDbContext db)
+        //{
+        //    DecisionLogger decisionLogger = new DecisionLogger();
+        //    decisionLogger.AddMovieFood(db);
+
+        //}
     }
 }

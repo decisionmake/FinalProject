@@ -1,4 +1,6 @@
-﻿using FinalProject.Models.FoodModels;
+﻿using FinalProject.DAL;
+using FinalProject.DAL.InformationTracking;
+using FinalProject.Models.FoodModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,13 @@ namespace FinalProject.Services
 {
     public class FoodService : IFoodService
     {
+
+        public MovieVotingHistoryDbContext db()
+        {
+            MovieVotingHistoryDbContext db = new MovieVotingHistoryDbContext();
+
+            return db;
+        }
         public async Task<FoodViewModel> Index(string zip)
         {
             //var client = new RestClient("https://api.yelp.com/v3/businesses/search?term=Clayton+Bicycle+Center&location=5411+Clayton+Rd%2c+Clayton%2c+CA+94517%2c+US");
@@ -42,8 +51,38 @@ namespace FinalProject.Services
 
             return business ;
         }
+        public void TrackFood(MovieVotingHistoryDbContext db)
+        {
+            DecisionLogger decisionLogger = new DecisionLogger();
+            decisionLogger.AddMovieFood(db);
+
+        }
+
+        public void AddFood(FoodSummary food, MovieVotingHistoryDbContext db)
+        {
+            List<string> list = new List<string>();
+            List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
+            if (moviefood == null)
+            {
+
+                list.Add(food.Name);
+
+            }
+            else
+            {
+                foreach (var item in moviefood)
+                {
+                    list.Add(item);
+                }
+
+                list.Add(food.Name);
+                HttpContext.Current.Session.Add("moviefood", list);
+
+            }
+            HttpContext.Current.Session.Add("moviefood", list);
 
 
+        }
     }
 
 }
