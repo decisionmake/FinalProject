@@ -26,6 +26,7 @@ namespace FinalProject.DAL.InformationTracking
 
                 MovieHistory movieToBeUpdatedInDatabase = db.Movie.Where(d => d.MovieName == movieTitle).First();
                 movieToBeUpdatedInDatabase.NumberOfTimesChosen = timesWatched;
+                
                 db.SaveChanges();
 
             }
@@ -36,7 +37,7 @@ namespace FinalProject.DAL.InformationTracking
                     MovieName = movieTitle,
                     NumberOfTimesChosen = 1
                 };
-
+                
                 db.Movie.Add(newMovieToAdd);
                 db.SaveChanges();
             }
@@ -49,6 +50,7 @@ namespace FinalProject.DAL.InformationTracking
             List<string> allMovies = HttpContext.Current.Session["Info"] as List<string>;
             numberOfAttempts = allMovies.Count / 2;
             var addSession = new Indecision_Tracker()
+            
             {
                 Attempts = numberOfAttempts
             };
@@ -87,8 +89,26 @@ namespace FinalProject.DAL.InformationTracking
                     MoviesSkipped = movie
                 };
                 db.RejectedMovies.Add(addMoive);
-                db.SaveChanges();
+                //db.SaveChanges();
             };
+
+        }
+        public void AddFood(MovieVotingHistoryDbContext db)
+        {
+
+        }
+        public void AddMovieFood(MovieVotingHistoryDbContext db)
+        {
+
+            List<string> list = HttpContext.Current.Session["moviefood"] as List<string>;
+            var addList = new MovieFood();
+            {
+                addList.MovieSelection = list.FirstOrDefault();
+                addList.FoodSelection = list.LastOrDefault();
+            }
+            db.CompareMovieToFood.Add(addList);
+            db.SaveChanges();
+
 
         }
     }

@@ -13,6 +13,7 @@ namespace FinalProject.Services
         void TrackMovie (string movieTitle, int id, string posterPath, MovieVotingHistoryDbContext db);
         void TrackIndecision (MovieVotingHistoryDbContext db);
         decimal GetAverageTimeSelected(MovieVotingHistoryDbContext db);
+        //void TrackFood(MovieVotingHistoryDbContext db);
 
     }
 }
