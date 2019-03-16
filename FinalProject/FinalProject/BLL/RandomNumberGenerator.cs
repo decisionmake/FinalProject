@@ -25,7 +25,7 @@ namespace FinalProject.BLL
             return results;
         }
 
-        internal static int GetNumberApiPage(int maximum)
+        public static int GetNumberApiPage(int maximum)
         {
             var numberGenerator = new Random();
             int numberOne = numberGenerator.Next(1, maximum);
