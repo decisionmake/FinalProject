@@ -86,6 +86,7 @@
                     List<string> get = HttpContext.Current.Session["info"] as List<string>;
                     if (get != null)
                     {
+                       
 
                         //List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
                         <p>You fought over these movies:</p> //iterate list
@@ -100,18 +101,18 @@
                 catch (Exception)
                 {
                     List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
-                    
+
                     if (x != null)
                     {
-
+                        
                         <p>You fought over these movies:</p> //iterate list
                         foreach (var item in x)
                         {
                             <p>@item</p>
                         }
-                        
-                    }
 
+                    }
+                  
                 }
 
 
