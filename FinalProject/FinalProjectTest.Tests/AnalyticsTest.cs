@@ -40,6 +40,24 @@ namespace FinalProjectTest.Tests
 
 
         }
+
+        [TestMethod]
+        public void FrequencySkipped_Test()
+        {
+            //Arrange
+            decimal averageMin = 0;
+            decimal averageMax = 100;
+            var db = mock.Database();
+
+            //Act
+            decimal averageReturned = analyticsTesClass.FrequencySkipped(db);
+
+            //Assert
+            Assert.IsTrue(averageReturned >= averageMin && averageReturned <= averageMax);
+
+        }
+
+
     }
     public class MockHelpers
     {
@@ -74,6 +92,21 @@ namespace FinalProjectTest.Tests
                 MovieName = "Rush Hour",
                 NumberOfTimesChosen = 5
             };
+
+            RejectedMovieList MovieThree = new RejectedMovieList
+            {
+                ID = 1,
+                Indecision_TrackerID = 1,
+                MoviesSkipped = "Deadpool 2"
+            };
+
+            RejectedMovieList MovieFour = new RejectedMovieList
+            {
+                ID = 1,
+                Indecision_TrackerID = 1,
+                MoviesSkipped = "Rush Hour"
+            };
+
             database.Database.Delete();
             database.Database.Create();
             var list = database.Movie.Count();
@@ -81,7 +114,10 @@ namespace FinalProjectTest.Tests
 
             database.Movie.Add(Movie);
             database.Movie.Add(MovieTwo);
+            database.RejectedMovies.Add(MovieThree);
+            database.RejectedMovies.Add(MovieFour);
             database.SaveChanges();
+
             return database;
 
         }
