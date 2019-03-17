@@ -37,7 +37,7 @@ namespace FinalProject.Service
             };
             SessionStorage.StorePopular(movies);
 
-                return movies;
+            return movies;
 
         }
 

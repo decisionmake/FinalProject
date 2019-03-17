@@ -21,7 +21,7 @@ namespace FinalProjectTest.Tests
         public void SetUp()
         {
             HttpContext.Current = mock.FakeHttpContext();
-            HttpContext.Current.Session["SelectedMovie"] = "Deadpool 2";
+           
         }
 
         [TestMethod]
