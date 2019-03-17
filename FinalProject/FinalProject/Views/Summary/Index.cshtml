@@ -46,36 +46,41 @@
                 border-radius: 100%;
             }
     </style>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script language="javascript">
+    $.ajax({
+        url: "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term= + @Model.MovieTitle + &country=us",
+        headers: {
+            'X-RapidAPI-Key': '3cae5dd1abmshde90ef02903a9d1p18ba4ajsnb52a75b05953'
+        },
+        type: "GET",
+        dataType: "json",
+
+        success: function (results) {
+            console.log(results.results)
+            console.log(results.results.length)
+            var k = 0
+            console.log(results.results[k].locations.length);
+            for (var i = 0; i < results.results[k].locations.length; i++) {
+                console.log(results.results[k].locations[i].display_name);
+                document.getElementById("container").innerHTML += "Available to stream on: " +"<br>" + results.results[k].locations[i].display_name + "</br>";
+            }
+        }
+    });
+
+        </script>
+    }
 </head>
 <body>
 
-    <div class="split left" onclick="buttonClickOptionOne()">
+    <div class="split left">
         <div class="centered">
             <img src="http://image.tmdb.org/t/p/w185/@Model.PosterPath" alt="Car" onclick="buttonClickOptionOne()" id="inc1" style="width:100%">
             <p>You selected @Model.MovieTitle</p>
             <p>the battle is over</p>
             @{
-                List<string> list = new List<string>();
-                List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
-                if (moviefood == null)
-                {
-
-                    list.Add(Model.MovieTitle);
-                    HttpContext.Current.Session.Add("moviefood", list);
-
-                }
-                else
-                {
-                    foreach (var item in moviefood)
-                    {
-                        list.Add(item);
-                    }
-
-                    list.Add(Model.MovieTitle);
-
-                }
-                HttpContext.Current.Session.Add("moviefood", list);
-
                 try // logic to switch between genre/popular depending on which cookies are present
                 {
                     List<string> get = HttpContext.Current.Session["info"] as List<string>;
@@ -87,38 +92,27 @@
                         foreach (var item in get)
 
                         {
-                            //iterate list
-
                             <p>@item</p>
 
                         }
-
-
                     }
                 }
                 catch (Exception)
                 {
                     List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
-
-
-
-
+                    
                     if (x != null)
                     {
 
                         <p>You fought over these movies:</p> //iterate list
                         foreach (var item in x)
                         {
-
                             <p>@item</p>
-
                         }
-
-
+                        
                     }
 
                 }
-
 
 
             }
@@ -127,82 +121,134 @@
 
     <div class="split right">
         <div class="centered">
+            <p id="container"></p>
+            <hr>
+
             <p>To continue on to food, please enter your ZipCode</p>
             @using (Html.BeginForm("index", "food"))
             {
                 <input type="text" name="zip" />
                 <input type="submit" />
             }
+
         </div>
     </div>
+    @{ List<string> list = new List<string>();
+        List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
+        if (moviefood == null)
+        {
+
+            list.Add(Model.MovieTitle);
+            HttpContext.Current.Session.Add("moviefood", list);
+        }
+        else
+        {
+            foreach (var item in moviefood)
+            {
+                list.Add(item);
+            }
+
+            list.Add(Model.MovieTitle);
+
+
+        }
+        HttpContext.Current.Session.Add("moviefood", list);
+    }
+
 
 </body>
 </html>
 
-
-@*<body>
-    <div>
-        Your movie selection is @Model.MovieTitle! Enjoy!
-        <div class="col-lg-6">
-            <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.PosterPath" alt="Card image cap">
-        </div>
-    </div>
-    <p>To continue on to food, please enter your ZipCode</p>
-    @using (Html.BeginForm("index", "food"))
-    {
-        <input type="text" name="zip" />
-        <input type="submit" />
-    }
-
-    @{
-        try // logic to switch between genre/popular depending on which cookies are present
-        {
-            var get = HttpContext.Current.Request.Cookies["information"].Value;
-            if (get != null)
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script language="javascript">
+    $.ajax({
+        url: "https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term= + @Model.MovieTitle + &country=us",
+        headers: {
+            'X-RapidAPI-Key': '3cae5dd1abmshde90ef02903a9d1p18ba4ajsnb52a75b05953'
+        },
+        type: "GET",
+        dataType: "json",
+      
+        success: function (results) {
+            console.log(results.results)
+            console.log(results.results.length)
+            var k = 0
+            console.log(results.results[k].locations.length);
+            for (var i = 0; i < results.results[k].locations.length; i++) {
+                console.log(results.results[k].locations[i].display_name);
+                output += "<p>" + results.results[k].locations[i].display_name + "</p>";
+                $("output").html(output);
+            }
+           
+        } 
+    });
+    
+    </script>
+    }*@
+    @*<body>
+            <div>
+                Your movie selection is @Model.MovieTitle! Enjoy!
+                <div class="col-lg-6">
+                    <img class="card-img-top" src="http://image.tmdb.org/t/p/w185/@Model.PosterPath" alt="Card image cap">
+                </div>
+            </div>
+            <p>To continue on to food, please enter your ZipCode</p>
+            @using (Html.BeginForm("index", "food"))
             {
+                <input type="text" name="zip" />
+                <input type="submit" />
+            }
 
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
-
-                <p>You fought over these movies:</p> //iterate list
-                foreach (var item in result)
+            @{
+                try // logic to switch between genre/popular depending on which cookies are present
                 {
+                    var get = HttpContext.Current.Request.Cookies["information"].Value;
+                    if (get != null)
+                    {
 
-                    <p>@item</p>
+                        var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get); //break the cookie into objects
+
+                        <p>You fought over these movies:</p> //iterate list
+                        foreach (var item in result)
+                        {
+
+                            <p>@item</p>
+
+                        }
+
+                        var c = new HttpCookie("information"); //erase cookie
+                        c.Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies.Add(c);
+                    }
+                }
+                catch (Exception)
+                {
+                    var get1 = HttpContext.Current.Request.Cookies["genreinfo"].Value; //pulls cookie
+
+
+                    if (get1 != null)
+                    {
+
+                        var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get1); //break the cookie into objects
+
+
+                        <p>You fought over these movies:</p> //iterate list
+                        foreach (var item in result)
+                        {
+
+                            <p>@item</p>
+
+                        }
+
+                        var c = new HttpCookie("genreinfo"); //erase cookie
+                        c.Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies.Add(c);
+                    }
 
                 }
 
-                var c = new HttpCookie("information"); //erase cookie
-                c.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(c);
+
+
             }
-        }
-        catch (Exception)
-        {
-            var get1 = HttpContext.Current.Request.Cookies["genreinfo"].Value; //pulls cookie
-
-
-            if (get1 != null)
-            {
-
-                var result = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>(get1); //break the cookie into objects
-
-
-                <p>You fought over these movies:</p> //iterate list
-                foreach (var item in result)
-                {
-
-                    <p>@item</p>
-
-                }
-
-                var c = new HttpCookie("genreinfo"); //erase cookie
-                c.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(c);
-            }
-
-        }
-
-
-
-    }
-</body>*@
+        </body>*@

@@ -12,7 +12,7 @@ namespace FinalProject.Services
     {
         MovieVotingHistoryDbContext db();
         Task<FoodViewModel> Index(string zip);
-        void TrackFood(MovieVotingHistoryDbContext db);
-        void AddFood(FoodSummary food, MovieVotingHistoryDbContext db);
+        void TrackFood(FoodSummary food, MovieVotingHistoryDbContext db);
+        void AddFood(MovieVotingHistoryDbContext db);
     }
 }

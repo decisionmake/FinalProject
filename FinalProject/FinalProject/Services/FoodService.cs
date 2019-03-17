@@ -51,36 +51,39 @@ namespace FinalProject.Services
 
             return business ;
         }
-        public void TrackFood(MovieVotingHistoryDbContext db)
+        public void TrackFood(FoodSummary food, MovieVotingHistoryDbContext db)
         {
             DecisionLogger decisionLogger = new DecisionLogger();
-            decisionLogger.AddMovieFood(db);
+           
+
+                List<string> list = new List<string>();
+                List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
+                if (moviefood == null)
+                {
+
+                    list.Add(food.Name);
+                HttpContext.Current.Session.Add("moviefood", list);
+                }
+                else
+                {
+                    foreach (var item in moviefood)
+                    {
+                        list.Add(item);
+                    }
+
+                    list.Add(food.Name);
+                    HttpContext.Current.Session.Add("moviefood", list);
+
+                }
+            
 
         }
 
-        public void AddFood(FoodSummary food, MovieVotingHistoryDbContext db)
+        public void AddFood(MovieVotingHistoryDbContext db)
         {
-            List<string> list = new List<string>();
-            List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
-            if (moviefood == null)
-            {
-
-                list.Add(food.Name);
-
-            }
-            else
-            {
-                foreach (var item in moviefood)
-                {
-                    list.Add(item);
-                }
-
-                list.Add(food.Name);
-                HttpContext.Current.Session.Add("moviefood", list);
-
-            }
-            HttpContext.Current.Session.Add("moviefood", list);
-
+          
+            DecisionLogger decisionLogger = new DecisionLogger();
+            decisionLogger.AddMovieFood(db);
 
         }
     }

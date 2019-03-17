@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using FinalProject.DAL;
 using FinalProject.Service;
 
 namespace FinalProject.Controllers
@@ -6,7 +7,7 @@ namespace FinalProject.Controllers
     public class MovieController : Controller
     {
         private readonly IMovieHistoryService _service;
-
+        private MovieVotingHistoryDbContext db = new MovieVotingHistoryDbContext();
         public MovieController(IMovieHistoryService service)
         {
            

@@ -33,8 +33,9 @@ namespace FinalProject.Controllers
 
         public ActionResult FoodSummary(FoodSummary selection)
         {
-            _service.AddFood(selection, _service.db());
-            _service.TrackFood(_service.db());
+            
+            _service.TrackFood(selection,_service.db());
+            _service.AddFood(_service.db());
             return View(selection);
             
         }
