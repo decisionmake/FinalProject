@@ -92,38 +92,27 @@
                         foreach (var item in get)
 
                         {
-                            //iterate list
-
                             <p>@item</p>
 
                         }
-
-
                     }
                 }
                 catch (Exception)
                 {
                     List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
-
-
-
-
+                    
                     if (x != null)
                     {
 
                         <p>You fought over these movies:</p> //iterate list
                         foreach (var item in x)
                         {
-
                             <p>@item</p>
-
                         }
-
-
+                        
                     }
 
                 }
-
 
 
             }
@@ -133,17 +122,38 @@
     <div class="split right">
         <div class="centered">
             <p id="container"></p>
-                <hr>
+            <hr>
 
-                <p>To continue on to food, please enter your ZipCode</p>
-                @using (Html.BeginForm("index", "food"))
-                {
-                    <input type="text" name="zip" />
-                    <input type="submit" />
-                }
-        
+            <p>To continue on to food, please enter your ZipCode</p>
+            @using (Html.BeginForm("index", "food"))
+            {
+                <input type="text" name="zip" />
+                <input type="submit" />
+            }
+
         </div>
     </div>
+    @{ List<string> list = new List<string>();
+        List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
+        if (moviefood == null)
+        {
+
+            list.Add(Model.MovieTitle);
+            HttpContext.Current.Session.Add("moviefood", list);
+        }
+        else
+        {
+            foreach (var item in moviefood)
+            {
+                list.Add(item);
+            }
+
+            list.Add(Model.MovieTitle);
+
+
+        }
+        HttpContext.Current.Session.Add("moviefood", list);
+    }
 
 
 </body>

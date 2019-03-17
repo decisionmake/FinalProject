@@ -89,14 +89,11 @@ namespace FinalProject.DAL.InformationTracking
                     MoviesSkipped = movie
                 };
                 db.RejectedMovies.Add(addMoive);
-                //db.SaveChanges();
+                db.SaveChanges();
             };
 
         }
-        public void AddFood(MovieVotingHistoryDbContext db)
-        {
-
-        }
+        
         public void AddMovieFood(MovieVotingHistoryDbContext db)
         {
 
@@ -107,7 +104,7 @@ namespace FinalProject.DAL.InformationTracking
                 addList.FoodSelection = list.LastOrDefault();
             }
             db.CompareMovieToFood.Add(addList);
-            //db.SaveChanges();
+            db.SaveChanges();
 
 
         }
