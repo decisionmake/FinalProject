@@ -16,6 +16,19 @@ namespace FinalProject.Services
             return getAverageSelected.AverageTimesSelected(db);
         }
 
+        public decimal GetFrequencySkipped(MovieVotingHistoryDbContext db)
+        {
+            var getFrequencySkiiped = new Analytics();
+            return getFrequencySkiiped.FrequencySkipped(db);
+        }
+
+        public decimal[] GetVotingAverage(MovieVotingHistoryDbContext db)
+        {
+            var getVotingStatistics = new Analytics();
+            return getVotingStatistics.AttemptsToDecide(db);
+
+        }
+
         public MovieVotingHistoryDbContext db()
         {
             MovieVotingHistoryDbContext db = new MovieVotingHistoryDbContext();
@@ -36,6 +49,7 @@ namespace FinalProject.Services
             decisionLogger.EditMovieDeciosionTracker(movieTitle, id, posterPath, db);
 
         }
+
 
         //public void TrackFood(MovieVotingHistoryDbContext db)
         //{

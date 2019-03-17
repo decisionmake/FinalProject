@@ -15,6 +15,10 @@ namespace FinalProject.Models.SummaryPage
         public int id { get; set; }
         public string PosterPath { get; set; }
         public decimal AverageSelected { get; set; }
+        public decimal AverageSkipped { get; set; }
+        public decimal AttemptsToDecide { get; set; }
+        public decimal AverageAttemptsToDecide { get; set; }
+        public string AttemptsMessage { get; set; }
 
     }
 }

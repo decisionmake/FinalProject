@@ -31,6 +31,20 @@ namespace FinalProject.Controllers
             _service.TrackMovie(summary.MovieTitle, summary.id, summary.PosterPath, _service.db());
             _service.TrackIndecision(_service.db());
             summary.AverageSelected = _service.GetAverageTimeSelected(_service.db());
+            summary.AverageSkipped = _service.GetFrequencySkipped(_service.db());
+            summary.AttemptsToDecide = _service.GetVotingAverage(_service.db())[0];
+            summary.AverageAttemptsToDecide = _service.GetVotingAverage(_service.db())[1];
+            if (summary.AttemptsToDecide > summary.AverageAttemptsToDecide)
+            {
+                summary.AttemptsMessage = $"It took you {summary.AttemptsToDecide} attempts to decide, on average it takes {summary.AverageAttemptsToDecide}." +
+                    $"You may be a little indecisive.";
+            }
+            else if (summary.AttemptsToDecide < summary.AverageAttemptsToDecide)
+            {
+                summary.AttemptsMessage = $"It took you {summary.AttemptsToDecide} attempts to decide, on average it takes {summary.AverageAttemptsToDecide}." +
+                     $"You're better than most, great job!";
+            }
+
             return View(summary);
         }
     }

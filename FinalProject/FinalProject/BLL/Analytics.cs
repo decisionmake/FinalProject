@@ -30,9 +30,23 @@ namespace FinalProject.BLL
             int allMoviesSkiped = db.RejectedMovies.Count();
 
             decimal average = Convert.ToDecimal(totalSkipped) / Convert.ToDecimal(allMoviesSkiped);
-            average = Math.Round(average, 2) * 100;
+            average = 100 - (Math.Round(average, 2) * 100);
 
             return average;
+
+        }
+
+        public decimal[] AttemptsToDecide(MovieVotingHistoryDbContext db)
+        {
+            string movieID = HttpContext.Current.Session["SessionId"] as string;
+            int.TryParse(movieID, out int id);
+
+            decimal numberOfAttempts = db.Attempt.Where(d => d.ID == id).Select(d => d.Attempts).SingleOrDefault();
+            decimal sumOfAllUserAttempts = Convert.ToDecimal(db.Attempt.Average(d => d.Attempts));
+            sumOfAllUserAttempts = Math.Round(sumOfAllUserAttempts, 2);
+
+            decimal[] statistics = {numberOfAttempts, sumOfAllUserAttempts };
+            return statistics;
 
         }
     }
