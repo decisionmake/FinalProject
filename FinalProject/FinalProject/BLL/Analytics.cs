@@ -22,17 +22,13 @@ namespace FinalProject.BLL
 
         }
 
-        public decimal FrequencySkipped(MovieVotingHistoryDbContext db)
+        public int FrequencySkipped(MovieVotingHistoryDbContext db)
         {
             string selectedMovie = HttpContext.Current.Session["SelectedMovie"] as string;
 
             int totalSkipped = db.RejectedMovies.Where(d => d.MoviesSkipped == selectedMovie).Count();
-            int allMoviesSkiped = db.RejectedMovies.Count();
 
-            decimal average = Convert.ToDecimal(totalSkipped) / Convert.ToDecimal(allMoviesSkiped);
-            average = 100 - (Math.Round(average, 2) * 100);
-
-            return average;
+            return totalSkipped;
 
         }
 
