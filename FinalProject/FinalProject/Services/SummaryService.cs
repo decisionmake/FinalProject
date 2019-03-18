@@ -16,7 +16,7 @@ namespace FinalProject.Services
             return getAverageSelected.AverageTimesSelected(db);
         }
 
-        public decimal GetFrequencySkipped(MovieVotingHistoryDbContext db)
+        public int GetFrequencySkipped(MovieVotingHistoryDbContext db)
         {
             var getFrequencySkiiped = new Analytics();
             return getFrequencySkiiped.FrequencySkipped(db);
