@@ -39,16 +39,22 @@
             position: fixed;
             z-index: 1;
             top: 0;
-            overflow-x: hidden;
+            overflow-x: visible;
             padding-top: 20px;
         }
 
         .left {
             left: 0;
             background-color: #111;
+            overflow-x:visible;
         }
 
         .right {
+            right: 0;
+            background-color: #808080;
+            overflow-x: visible;
+        }
+        .right1 {
             right: 0;
             background-color: #808080;
         }
@@ -57,10 +63,29 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -60%);
             text-align: center;
+            overflow-x: visible;
+        }
+        .centered1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            text-align: center;
+            overflow-x: visible;
+        }
+        .centered2 {
+            position: absolute;
+            top:  84%;
+            left: 20%;
+            
+           
+            overflow-x: visible;
         }
 
+
+     
             .centered img {
                 width: 300px;
                 border-width: 30px;
@@ -69,31 +94,39 @@
     </style>
 </head>
 <body>
+  
 
-    <div class="split left">
+    <div class="split left" >
+        
+           <img src="~/Content/Images/fight night.jpg" class="centered1"/>
+         <p class="centered2">We here at fight night are sick of choices. Sick of arguement over what to watch and what to eat.  We are
+            extremely sick of endlessly scrolling through options on whatever streaming serive we use.  Our tool 
+            takes infinite options and brings them head to head.  </p>
+          
+
+
+       
+    </div>
+    
+    
+    <div class="split right">
         <div class="centered">
             <p>click here to argue about which movie to watch</p>
             <div class="card-body">
                 <input type="button" value="Movies" onclick="location.href='@Url.Action("Index","Movie")'" /> @*redirect to movie controller*@
             </div>
-
-    
-            </div>
-        </div>
-
-    <div class="split right">
-        <div class="centered">
             <div> or for food, enter zip</div>
             @using (Html.BeginForm("index", "Food")) //redirect to food controller
             {
                 <input type="text" name="zip" />
                 <input type="submit" />
             }
+
         </div>
 
 
     </div>
-          
 
-        </body>
+
+</body>
     </html>
