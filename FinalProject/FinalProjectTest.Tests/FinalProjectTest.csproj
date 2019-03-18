@@ -60,12 +60,14 @@
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Yelp.Api, Version=1.3.0.0, Culture=neutral, PublicKeyToken=null" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RandomNumberGeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AnalyticsTest.cs" />
     <Compile Include="MovieHistoryServiceTest.cs" />
+    <Compile Include="FoodService_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
