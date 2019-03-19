@@ -26,8 +26,9 @@
 
 <html>
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
+    @*<style>
         body {
             font-family: Arial;
             color: white;
@@ -91,7 +92,7 @@
                 border-width: 30px;
                 border-color: antiquewhite;
             }
-    </style>
+    </style>*@
 </head>
 <body>
   
@@ -113,13 +114,15 @@
         <div class="centered">
             <p>click here to argue about which movie to watch</p>
             <div class="card-body">
-                <input type="button" value="Movies" onclick="location.href='@Url.Action("Index","Movie")'" /> @*redirect to movie controller*@
+                <input type="button" class="button" value="FIght Over Movies" onclick="location.href='@Url.Action("Index","Movie")'"
+                      
+/> @*redirect to movie controller*@
             </div>
             <div> or for food, enter zip</div>
             @using (Html.BeginForm("index", "Food")) //redirect to food controller
             {
-                <input type="text" name="zip" />
-                <input type="submit" />
+                <input type="text"  name="zip" />
+                <input type="submit" class="button" />
             }
 
         </div>

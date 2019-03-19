@@ -22,3 +22,80 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body {
+    font-family: Arial;
+    color: white;
+}
+
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: visible;
+    padding-top: 20px;
+}
+
+.left {
+    left: 0;
+    background-color: #111;
+    overflow-x: visible;
+}
+
+.right {
+    right: 0;
+    background-color: #808080;
+    overflow-x: visible;
+}
+
+.right1 {
+    right: 0;
+    background-color: #808080;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+    overflow-x: visible;
+}
+
+.centered1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+    overflow-x: visible;
+}
+
+.centered2 {
+    position: absolute;
+    top: 84%;
+    left: 20%;
+    overflow-x: visible;
+}
+
+
+
+.centered img {
+    width: 300px;
+    border-width: 30px;
+    border-color: antiquewhite;
+}
+.button {
+    background-color: blue;
+    border: none;
+    color: orange;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}

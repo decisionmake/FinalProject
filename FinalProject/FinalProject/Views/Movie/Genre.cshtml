@@ -43,56 +43,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        img:hover {
-            -webkit-filter: brightness(150%);
-        }
-        body {
-            font-family: Arial;
-            color: white;
-        }
-
-        .split {
-            height: 100%;
-            width: 50%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            overflow-x: hidden;
-            padding-top: 20px;
-        }
-
-        .left {
-            left: 0;
-            background-color: #111;
-        }
-
-        .right {
-            right: 0;
-            background-color: #808080;
-        }
-
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-            .centered img {
-                width: 300px;
-                border-radius: 100%;
-            }
-    </style>
+    
 </head>
 <body>
 
     <div class="split left" onclick="buttonClick1()">
-        <div class="centered">
-            <img src="#" alt="" onclick="buttonClickOptionOne()" id="inc1" style="width:100%">
+        <div class="centered" id="inc">
+            <img src="#" alt="" onclick="buttonClick1()" style="width:100%">
 
-            <h2 onclick="buttonClick()">@Model.GenreOne.name</h2>
+            <h2 onclick="buttonClick1()">@Model.GenreOne.name</h2>
             
             @if (Model.GenreOne.name == "Horror")
             {
@@ -170,11 +129,11 @@
             {
                 <img src="~/Content/Images/adventure.jpg" />;
             }
-
+            
         </div>
     </div>  
     <div class="split right" onclick="buttonClick()">
-        <div class="centered">
+        <div class="centered" id="inc1">
         
             <h2 onclick="buttonClick()">@Model.GenreTwo.name</h2>
             @if (Model.GenreTwo.name == "Horror")
@@ -252,7 +211,7 @@
             else if (Model.GenreTwo.name == "Adventure")
             {
                 <img src="~/Content/Images/adventure.jpg" />;
-            }
+            };
 
         </div>
         </div>
