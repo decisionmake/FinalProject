@@ -1,104 +1,17 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-<div class="jumbotron">
-    <h1>Welcome to {insert app name here}</h1>
-
-</div>
-
-@*<div class="row">
-    <p>
-        Some study has probably shown that picking movies with your significant other is frustrating as hell. Choosing what to eat is somehow even worse.  You'd think that with so many choices, it would be easy. You'd be wrong.
-        We aim to make that simple, so you can actually do the chill part of netflix and chill
-    </p>
-    <div class="card-body">
-        <input type="button" value="Movies" onclick="location.href='@Url.Action("Index","Movie")'" />
-    </div>
-
-    <div> or for food, enter zip</div>
-    @using (Html.BeginForm("index", "Food"))
-    {
-        <input type="text" name="zip" />
-        <input type="submit" />
-    }
-</div>*@
+﻿
 
 <html>
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial;
-            color: white;
-        }
-
-        .split {
-            height: 100%;
-            width: 50%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            overflow-x: visible;
-            padding-top: 20px;
-        }
-
-        .left {
-            left: 0;
-            background-color: #111;
-            overflow-x:visible;
-        }
-
-        .right {
-            right: 0;
-            background-color: #808080;
-            overflow-x: visible;
-        }
-        .right1 {
-            right: 0;
-            background-color: #808080;
-        }
-
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -60%);
-            text-align: center;
-            overflow-x: visible;
-        }
-        .centered1 {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -60%);
-            text-align: center;
-            overflow-x: visible;
-        }
-        .centered2 {
-            position: absolute;
-            top:  84%;
-            left: 20%;
-            
-           
-            overflow-x: visible;
-        }
-
-
-     
-            .centered img {
-                width: 300px;
-                border-width: 30px;
-                border-color: antiquewhite;
-            }
-    </style>
+ 
 </head>
 <body>
   
 
     <div class="split left" >
         
-           <img src="~/Content/Images/fight night.jpg" class="centered1"/>
+           <img src="~/Content/Images/Fight Night-cropsm.jpg" class="centered1"/>
          <p class="centered2">We here at fight night are sick of choices. Sick of arguement over what to watch and what to eat.  We are
             extremely sick of endlessly scrolling through options on whatever streaming serive we use.  Our tool 
             takes infinite options and brings them head to head.  </p>
@@ -113,15 +26,21 @@
         <div class="centered">
             <p>click here to argue about which movie to watch</p>
             <div class="card-body">
-                <input type="button" value="Movies" onclick="location.href='@Url.Action("Index","Movie")'" /> @*redirect to movie controller*@
+                <input type="button" class="button" value="FIght Over Movies" onclick="location.href='@Url.Action("Index", "Movie")'" /> @*redirect to movie controller*@
             </div>
+
+            <br />
+            <br />
+
+            <br />
+
             <div> or for food, enter zip</div>
-            @using (Html.BeginForm("index", "Food")) //redirect to food controller
+            @using (Html.BeginForm("index", "food"))
             {
                 <input type="text" name="zip" />
-                <input type="submit" />
+                <input class="button" type="submit" />
             }
-
+            @ViewBag.Message
         </div>
 
 

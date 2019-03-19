@@ -10,6 +10,7 @@ using Yelp.Api.Models;
 using FinalProject.Models.FoodModels;
 using FinalProject.Services;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace FinalProject.Controllers
 {
@@ -27,13 +28,18 @@ namespace FinalProject.Controllers
         [HttpPost]
         public async Task<ActionResult> Index(string zip)
         {
+            if (zip == null || zip.Length < 5 || Regex.IsMatch(zip, @"^[0-9]+$") == false)
+            {
+                ViewBag.Message = "Invalid Entry";
+                return RedirectToAction("index", "home");
+            }
             
             return View(await _service.Index(zip));
         }
 
         public ActionResult FoodSummary(FoodSummary selection)
         {
-            
+            selection.MoviePair = _service.MoviePair(_service.db());
             _service.TrackFood(selection,_service.db());
             _service.AddFood(_service.db());
             return View(selection);

@@ -293,6 +293,8 @@
     <Content Include="Content\Images\drama.png" />
     <Content Include="Content\Images\family.jpg" />
     <Content Include="Content\Images\fantasy.jpg" />
+    <Content Include="Content\Images\Fight Night-crop.jpg" />
+    <Content Include="Content\Images\Fight Night-cropsm.jpg" />
     <Content Include="Content\Images\fight night.jpg" />
     <Content Include="Content\Images\history.png" />
     <Content Include="Content\Images\horror.jpg" />
