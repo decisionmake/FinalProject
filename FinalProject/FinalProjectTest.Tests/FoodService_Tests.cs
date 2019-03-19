@@ -30,11 +30,11 @@ namespace FinalProjectTest.Tests
 
 
             //Act
-            var restaurantsReturned = _foodService.Index(zip);
+            var restaurantsReturned = _foodService.Index(zip).Result;
 
             //Assert
-            Assert.IsNotNull(restaurantsReturned);
-            Assert.IsNotNull(restaurantsReturned.Result.BusinessTwo);
+            Assert.IsNotNull(restaurantsReturned.BusinessOne);
+            Assert.IsNotNull(restaurantsReturned.BusinessTwo);
         }
 
         [TestMethod]
