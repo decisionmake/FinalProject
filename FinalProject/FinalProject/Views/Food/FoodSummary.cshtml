@@ -29,9 +29,14 @@
             <p>@Model.Phone</p>
             <p>Heres where to go</p>
             <p>@Model.Location</p>
+            @using (Html.BeginForm("index", "Home")) //redirect to Home controller
+            {
 
+                <input type="submit" class="button" value="Return to Start" />
+            }
 
-            </div>
+        </div>
+     
     </div>
 
 

@@ -80,6 +80,12 @@ body {
     overflow-x: visible;
 }
 
+.reframe {
+    height: 500px;
+    width: 600px;
+    overflow: hidden;
+}
+
 
 
 .centered img {
@@ -88,9 +94,9 @@ body {
     border-color: antiquewhite;
 }
 .button {
-    background-color: blue;
+    background-color: black;
     border: none;
-    color: orange;
+    color: gray;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -98,4 +104,8 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 16px;
+}
+input[type=text] {
+    background-color:  darkgrey;
+    color: white;
 }
