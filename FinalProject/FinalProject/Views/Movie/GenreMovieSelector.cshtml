@@ -79,7 +79,7 @@
             document.getElementById('inc1').value = ++j;
             console.log(j)
             if (j == 2) {
-                                window.location.href='@Html.Raw(@Url.Action("Index","Summary", new { movieTitle = Model.GenreMovieOne.title, id = Model.GenreMovieTwo.id, posterPath = Model.GenreMovieTwo.poster_path }))'
+                                window.location.href='@Html.Raw(@Url.Action("Index","Summary", new { movieTitle = Model.GenreMovieTwo.title, id = Model.GenreMovieTwo.id, posterPath = Model.GenreMovieTwo.poster_path }))'
             }
             if ((i + j) == 2 && j == 1) {
                 window.location.reload();
