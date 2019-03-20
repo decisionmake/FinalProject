@@ -1,4 +1,5 @@
-﻿using FinalProject.DAL;
+﻿using FinalProject.BLL;
+using FinalProject.DAL;
 using FinalProject.DAL.InformationTracking;
 using FinalProject.Models.FoodModels;
 using System;
@@ -40,17 +41,23 @@ namespace FinalProject.Services
 
             var client = new Yelp.Api.Client("4bgFll8jl2USaAQoHqIUIQ1QavZHqeYmRQwXXg_z5wUu4-nBDYdVmYwcr9ALDE-iUxMT_sGfhNOqIM_ZE0oVM9SQmmgo0YrpBLtYh5FIxOQaguiddnmU71RVxm6AXHYx");
             Yelp.Api.Models.SearchResponse results = await client.SearchBusinessesAllAsync(request);
-            int[] randomNumber = BLL.RandomNumberGenerator.GetNumberMovie(results.Businesses.Count() + 1);
-
-
-            FoodViewModel business = new FoodViewModel
+            int[] randomNumber = BLL.RandomNumberGenerator.GetNumberMovie(results.Businesses.Count()+1);
+            do
             {
-                BusinessOne = results.Businesses[randomNumber[0]],
-                BusinessTwo = results.Businesses[randomNumber[1]]
 
-            };
 
-            return business ;
+
+
+
+                FoodViewModel business = new FoodViewModel
+                {
+                    BusinessOne = results.Businesses[randomNumber[0]],
+                    BusinessTwo = results.Businesses[randomNumber[1]]
+
+                };
+
+                return business;
+                    } while (randomNumber[0] != 0 && randomNumber[1] != 0);
         }
         public void TrackFood(FoodSummary food, MovieVotingHistoryDbContext db)
         {
@@ -86,6 +93,12 @@ namespace FinalProject.Services
             DecisionLogger decisionLogger = new DecisionLogger();
             decisionLogger.AddMovieFood(db);
 
+        }
+
+        public string MoviePair(MovieVotingHistoryDbContext db)
+        {
+            Analytics pair = new Analytics();
+           return pair.MovieFoodTracker(db);
         }
     }
 

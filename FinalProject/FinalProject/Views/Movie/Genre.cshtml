@@ -43,63 +43,178 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body {
-            font-family: Arial;
-            color: white;
-        }
-
-        .split {
-            height: 100%;
-            width: 50%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            overflow-x: hidden;
-            padding-top: 20px;
-        }
-
-        .left {
-            left: 0;
-            background-color: #111;
-        }
-
-        .right {
-            right: 0;
-            background-color: #808080;
-        }
-
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-            .centered img {
-                width: 300px;
-                border-radius: 100%;
-            }
-    </style>
+    
 </head>
 <body>
 
     <div class="split left" onclick="buttonClick1()">
-        <div class="centered">
-            <img src="." alt="Car" onclick="buttonClick1()" id="inc1" style="width:100%">
-            <h2 onclick="buttonClick1()" >@Model.GenreOne.name</h2>
-          
-        </div>
-    </div>
+        <div class="centered" id="inc">
+            <img src="#" alt="" onclick="buttonClick1()" style="width:100%">
 
-    <div class="split right" onclick="buttonClick()">
-        <div class="centered">
-            <img src="." alt="Car" onclick="buttonClick()" id="inc" style="width:100%">
-            <h2 onclick="buttonClick()">@Model.GenreTwo.name</h2>
+            <h2 onclick="buttonClick1()">@Model.GenreOne.name</h2>
+            
+            @if (Model.GenreOne.name == "Horror")
+            {
+                <img src="~/Content/Images/horror.jpg" /> ;
+            }
+            else if (Model.GenreOne.name == "Action")
+            {
+                <img src="~/Content/Images/action.jpg" />;
+            }
+            else if (Model.GenreOne.name == "Comedy")
+            {
+                <img src="~/Content/Images/comedy.gif" />;
+            }
+            else if (Model.GenreOne.name == "Crime")
+            {
+                <img src="~/Content/Images/crime.jpg" />;
+            }
+            else if (Model.GenreOne.name == "Documentary")
+            {
+                <img src="~/Content/Images/documentary.jpg" />;
+            }
+            else if (Model.GenreOne.name == "Drama")
+            {
+                <img src="~/Content/Images/drama.png" />;
+            }
+            else if (Model.GenreOne.name == "Family")
+            {
+                <img src="~/Content/Images/family.jpg" />;
+            }
+            else if (Model.GenreOne.name == "Fantasy")
+            {
+                <img src="~/Content/Images/fantasy.jpg" />;
+            }
+            else if (Model.GenreOne.name == "History")
+            {
+                <img src="~/Content/Images/history.png" />;
+            }
+            else if (Model.GenreOne.name == "Music")
+            {
+                <img src="~/Content/Images/Music.jpg" />;
+            }
+            else if (Model.GenreOne.name == "Mystery")
+            {
+                <img src="~/Content/Images/mystery.gif" />;
+            }
+            else if (Model.GenreOne.name == "Romance")
+            {
+                <img src="~/Content/Images/romance2.jpg" />;
+            }
+            else if (Model.GenreOne.name == "Science Fiction")
+            {
+                <img src="~/Content/Images/scifi.jpeg" />;
+            }
+            else if (Model.GenreOne.name == "Animation")
+            {
+                <img src="~/Content/Images/animated-genre.jpg" />;
+            }
+            else if (Model.GenreOne.name == "War")
+            {
+                <img src="~/Content/Images/war.jpg" />;
+            }
+            else if (Model.GenreOne.name == "Western")
+            {
+                <img src="~/Content/Images/western.jpg" />;
+            }
+            else if (Model.GenreOne.name == "TV Movie")
+            {
+                <img src="~/Content/Images/tv movie.jpg" />;
+            }
+            else if (Model.GenreOne.name == "Thriller")
+            {
+                <img src="~/Content/Images/thriller.png" />;
+            }
+            else if (Model.GenreOne.name == "Adventure")
+            {
+                <img src="~/Content/Images/adventure.jpg" />;
+            }
             
         </div>
-    </div>
+    </div>  
+    <div class="split right" onclick="buttonClick()">
+        <div class="centered" id="inc1">
+        
+            <h2 onclick="buttonClick()">@Model.GenreTwo.name</h2>
+            @if (Model.GenreTwo.name == "Horror")
+            {
+                <img src="~/Content/Images/horror.jpg" /> ;
+            }
+            else if (Model.GenreTwo.name == "Action")
+            {
+                <img src="~/Content/Images/action.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "Comedy")
+            {
+                <img src="~/Content/Images/comedy.gif" />;
+            }
+            else if (Model.GenreTwo.name == "Crime")
+            {
+                <img src="~/Content/Images/crime.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "Documentary")
+            {
+                <img src="~/Content/Images/documentary.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "Drama")
+            {
+                <img src="~/Content/Images/drama.png" />;
+            }
+            else if (Model.GenreTwo.name == "Family")
+            {
+                <img src="~/Content/Images/family.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "Fantasy")
+            {
+                <img src="~/Content/Images/fantasy.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "History")
+            {
+                <img src="~/Content/Images/history.png" />;
+            }
+            else if (Model.GenreTwo.name == "Music")
+            {
+                <img src="~/Content/Images/Music.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "Mystery")
+            {
+                <img src="~/Content/Images/mystery.gif" />;
+            }
+            else if (Model.GenreTwo.name == "Romance")
+            {
+                <img src="~/Content/Images/romance2.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "Science Fiction")
+            {
+                <img src="~/Content/Images/scifi.jpeg" />;
+            }
+            else if (Model.GenreTwo.name == "Animation")
+            {
+                <img src="~/Content/Images/animated-genre.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "War")
+            {
+                <img src="~/Content/Images/war.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "Western")
+            {
+                <img src="~/Content/Images/western.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "TV Movie")
+            {
+                <img src="~/Content/Images/tv movie.jpg" />;
+            }
+            else if (Model.GenreTwo.name == "Thriller")
+            {
+                <img src="~/Content/Images/thriller.png" />;
+            }
+            else if (Model.GenreTwo.name == "Adventure")
+            {
+                <img src="~/Content/Images/adventure.jpg" />;
+            };
+
+        </div>
+        </div>
 
 </body>
 </html>

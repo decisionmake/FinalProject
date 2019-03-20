@@ -14,5 +14,7 @@ namespace FinalProject.Services
         Task<FoodViewModel> Index(string zip);
         void TrackFood(FoodSummary food, MovieVotingHistoryDbContext db);
         void AddFood(MovieVotingHistoryDbContext db);
+       string MoviePair(MovieVotingHistoryDbContext db);
+
     }
 }

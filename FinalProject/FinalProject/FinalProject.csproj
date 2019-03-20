@@ -284,6 +284,28 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\action.jpg" />
+    <Content Include="Content\Images\adventure.jpg" />
+    <Content Include="Content\Images\animated-genre.jpg" />
+    <Content Include="Content\Images\comedy.gif" />
+    <Content Include="Content\Images\crime.jpg" />
+    <Content Include="Content\Images\documentary.jpg" />
+    <Content Include="Content\Images\drama.png" />
+    <Content Include="Content\Images\family.jpg" />
+    <Content Include="Content\Images\fantasy.jpg" />
+    <Content Include="Content\Images\Fight Night-crop.jpg" />
+    <Content Include="Content\Images\Fight Night-cropsm.jpg" />
+    <Content Include="Content\Images\fight night.jpg" />
+    <Content Include="Content\Images\history.png" />
+    <Content Include="Content\Images\horror.jpg" />
+    <Content Include="Content\Images\Music.jpg" />
+    <Content Include="Content\Images\mystery.gif" />
+    <Content Include="Content\Images\romance2.jpg" />
+    <Content Include="Content\Images\scifi.jpeg" />
+    <Content Include="Content\Images\thriller.png" />
+    <Content Include="Content\Images\tv movie.jpg" />
+    <Content Include="Content\Images\war.jpg" />
+    <Content Include="Content\Images\western.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -328,7 +350,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

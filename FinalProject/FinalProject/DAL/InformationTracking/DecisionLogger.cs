@@ -96,6 +96,7 @@ namespace FinalProject.DAL.InformationTracking
         
         public void AddMovieFood(MovieVotingHistoryDbContext db)
         {
+           
 
             List<string> list = HttpContext.Current.Session["moviefood"] as List<string>;
             var addList = new MovieFood();

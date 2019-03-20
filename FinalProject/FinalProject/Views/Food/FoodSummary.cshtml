@@ -10,43 +10,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
-            font-family: Arial;
-            color: white;
-        }
-
-        .split {
-            height: 100%;
-            width: 50%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            overflow-x: hidden;
-            padding-top: 20px;
-        }
-
-        .left {
-            left: 0;
-            background-color: #111;
-        }
-
-        .right {
-            right: 0;
-            background-color: #808080;
-        }
-
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-            .centered img {
-                width: 300px;
-                border-radius: 100%;
-            }
+       
     </style>
 </head>
 <body>
@@ -60,14 +24,21 @@
 
     <div class="split right">
         <div class="centered">
+           
             <p>@Model.Category it is! see that wasnt so hard</p>
+            <p>@Model.MoviePair</p>
             <p>Heres how to order</p>
             <p>@Model.Phone</p>
             <p>Heres where to go</p>
             <p>@Model.Location</p>
+            @using (Html.BeginForm("index", "Home")) //redirect to Home controller
+            {
 
+                <input type="submit" class="button" value="Return to Start" />
+            }
 
-            </div>
+        </div>
+     
     </div>
 
 

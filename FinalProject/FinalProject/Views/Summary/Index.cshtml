@@ -8,43 +8,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
-            font-family: Arial;
-            color: white;
-        }
 
-        .split {
-            height: 100%;
-            width: 50%;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            overflow-x: hidden;
-            padding-top: 20px;
-        }
-
-        .left {
-            left: 0;
-            background-color: #111;
-        }
-
-        .right {
-            right: 0;
-            background-color: #808080;
-        }
-
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-            .centered img {
-                width: 300px;
-                border-radius: 100%;
-            }
     </style>
 
     @section Scripts {
@@ -77,11 +41,18 @@
 
     <div class="split left">
         <div class="centered">
+            <p id="container"></p>
             <img src="http://image.tmdb.org/t/p/w185/@Model.PosterPath" alt="Car" onclick="buttonClickOptionOne()" id="inc1" style="width:100%">
             <p>You selected @Model.MovieTitle</p>
             <p>On average this movie has been selected @Model.AverageSelected% of the time!</p>
             <p>This movie has been skipped @Model.SkippedAmount times.</p>
             <p>@Model.AttemptsMessage</p>
+
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="centered">
             <p>the battle is over</p>
             @{
                 try // logic to switch between genre/popular depending on which cookies are present
@@ -89,6 +60,7 @@
                     List<string> get = HttpContext.Current.Session["info"] as List<string>;
                     if (get != null)
                     {
+
 
                         //List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
                         <p>You fought over these movies:</p> //iterate list
@@ -103,7 +75,7 @@
                 catch (Exception)
                 {
                     List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
-                    
+
                     if (x != null)
                     {
 
@@ -112,26 +84,21 @@
                         {
                             <p>@item</p>
                         }
-                        
+
                     }
 
                 }
 
 
             }
-        </div>
-    </div>
-
-    <div class="split right">
-        <div class="centered">
-            <p id="container"></p>
+           
             <hr>
 
             <p>To continue on to food, please enter your ZipCode</p>
             @using (Html.BeginForm("index", "food"))
             {
                 <input type="text" name="zip" />
-                <input type="submit" />
+                <input class="button" type="submit" />
             }
 
         </div>
