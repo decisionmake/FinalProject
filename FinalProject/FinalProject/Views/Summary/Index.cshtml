@@ -41,11 +41,18 @@
 
     <div class="split left">
         <div class="centered">
+            <p id="container"></p>
             <img src="http://image.tmdb.org/t/p/w185/@Model.PosterPath" alt="Car" onclick="buttonClickOptionOne()" id="inc1" style="width:100%">
             <p>You selected @Model.MovieTitle</p>
             <p>On average this movie has been selected @Model.AverageSelected% of the time!</p>
             <p>This movie has been skipped @Model.SkippedAmount times.</p>
             <p>@Model.AttemptsMessage</p>
+
+        </div>
+    </div>
+
+    <div class="split right">
+        <div class="centered">
             <p>the battle is over</p>
             @{
                 try // logic to switch between genre/popular depending on which cookies are present
@@ -53,7 +60,7 @@
                     List<string> get = HttpContext.Current.Session["info"] as List<string>;
                     if (get != null)
                     {
-                       
+
 
                         //List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
                         <p>You fought over these movies:</p> //iterate list
@@ -71,7 +78,7 @@
 
                     if (x != null)
                     {
-                        
+
                         <p>You fought over these movies:</p> //iterate list
                         foreach (var item in x)
                         {
@@ -79,17 +86,12 @@
                         }
 
                     }
-                  
+
                 }
 
 
             }
-        </div>
-    </div>
-
-    <div class="split right">
-        <div class="centered">
-            <p id="container"></p>
+           
             <hr>
 
             <p>To continue on to food, please enter your ZipCode</p>
