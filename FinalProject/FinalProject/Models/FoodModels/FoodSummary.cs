@@ -20,7 +20,7 @@ namespace FinalProject.Models.FoodModels
         public string Location { get; set; }
 
         public string Category { get; set; }
-        public List<string> MoviePair { get; set; }
+        public string MoviePair { get; set; }
 
     }
 }

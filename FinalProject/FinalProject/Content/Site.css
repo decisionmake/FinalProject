@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    overflow-y:  auto;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -36,18 +37,22 @@ body {
     top: 0;
     overflow-x: visible;
     padding-top: 20px;
+    overflow:auto;
 }
 
 .left {
     left: 0;
     background-color: #111;
     overflow-x: visible;
+    position: center;
 }
 
 .right {
     right: 0;
     background-color: #808080;
     overflow-x: visible;
+    position: center;
+  
 }
 
 .right1 {
@@ -57,11 +62,12 @@ body {
 
 .centered {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -60%);
     text-align: center;
-    overflow-x: visible;
+    overflow-y: auto;
+    
 }
 
 .centered1 {
@@ -70,20 +76,21 @@ body {
     left: 50%;
     transform: translate(-50%, -60%);
     text-align: center;
-    overflow-x: visible;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 .centered2 {
     position: absolute;
     top: 84%;
     left: 20%;
-    overflow-x: visible;
+    overflow-x: auto;
 }
 
 .reframe {
     height: 500px;
     width: 600px;
-    overflow: hidden;
+    overflow: auto;
 }
 
 
@@ -92,6 +99,7 @@ body {
     width: 300px;
     border-width: 30px;
     border-color: antiquewhite;
+    top: 50%;
 }
 .button {
     background-color: black;

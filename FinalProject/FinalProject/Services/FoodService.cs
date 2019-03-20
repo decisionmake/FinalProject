@@ -94,7 +94,7 @@ namespace FinalProject.Services
 
         }
 
-        public List<string> MoviePair(MovieVotingHistoryDbContext db)
+        public string MoviePair(MovieVotingHistoryDbContext db)
         {
             Analytics pair = new Analytics();
            return pair.MovieFoodTracker(db);
