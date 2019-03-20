@@ -49,9 +49,9 @@
 
     <div class="split left" onclick="buttonClick1()">
         <div class="centered" id="inc">
-            <img src="#" alt="" onclick="buttonClick1()" style="width:100%">
+           
 
-            <h2 onclick="buttonClick1()">@Model.GenreOne.name</h2>
+            <h2>@Model.GenreOne.name</h2>
             
             @if (Model.GenreOne.name == "Horror")
             {
@@ -135,7 +135,7 @@
     <div class="split right" onclick="buttonClick()">
         <div class="centered" id="inc1">
         
-            <h2 onclick="buttonClick()">@Model.GenreTwo.name</h2>
+            <h2>@Model.GenreTwo.name</h2>
             @if (Model.GenreTwo.name == "Horror")
             {
                 <img src="~/Content/Images/horror.jpg" /> ;
