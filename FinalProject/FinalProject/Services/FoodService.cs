@@ -21,6 +21,7 @@ namespace FinalProject.Services
 
             return db;
         }
+
         public async Task<FoodViewModel> Index(string zip)
         {
             //var client = new RestClient("https://api.yelp.com/v3/businesses/search?term=Clayton+Bicycle+Center&location=5411+Clayton+Rd%2c+Clayton%2c+CA+94517%2c+US");
