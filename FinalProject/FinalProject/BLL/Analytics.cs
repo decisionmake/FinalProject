@@ -48,19 +48,34 @@ namespace FinalProject.BLL
 
         }
 
-        public List<string> MovieFoodTracker(MovieVotingHistoryDbContext db)
+        public string MovieFoodTracker(MovieVotingHistoryDbContext db)
         {
             string selectedMovie = HttpContext.Current.Session["SelectedMovie"] as string;
+            if (selectedMovie == null)
+            {
+                return "You are the first to chose this movie and this resutrant together";
+            }
             List<MovieFood> hey = db.CompareMovieToFood.Where(x => x.MovieSelection == selectedMovie).ToList<MovieFood>();
+            if (hey.Count() == 0)
+            {
+                return "You are the first to chose this movie and this resutrant together";
+            }
             List<string> food = new List<string>();
             foreach (var item in hey)
             {
                
                     food.Add(item.FoodSelection);
-
+               
+            }
+            for (int i = 0; i < food.Count; i++)
+            {
+                if (food[i] != food[i])
+                {
+                    food.Remove(food[i]);
+                }
             }
 
-            return food; 
+            return $"The most popular pairing with this movie is {food.FirstOrDefault()}";
         }
     }
 }
