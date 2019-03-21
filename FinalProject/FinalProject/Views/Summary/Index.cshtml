@@ -107,7 +107,22 @@
                     <input class="button" type="submit" />
                 }
 
-            </div>
+          </div>
+
+            }
+
+            <hr>
+
+            <p>To continue on to food, please enter your ZipCode</p>
+            @using (Html.BeginForm("index", "food"))
+            {
+                <input type="text" name="zip" />
+                <input class="button" type="submit" />
+            }
+            <p>To try again click below!</p>
+            <input type="button" value="Return To Start" class="button" onclick="location.href='@Url.Action("index", "home")'">
+
+
         </div>
     @{ List<string> list = new List<string>();
         List<string> moviefood = HttpContext.Current.Session["moviefood"] as List<string>;
