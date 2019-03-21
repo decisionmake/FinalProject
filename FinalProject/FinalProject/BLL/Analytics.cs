@@ -53,12 +53,12 @@ namespace FinalProject.BLL
             string selectedMovie = HttpContext.Current.Session["SelectedMovie"] as string;
             if (selectedMovie == null)
             {
-                return "How unique!";
+                return null;
             }
             List<MovieFood> hey = db.CompareMovieToFood.Where(x => x.MovieSelection == selectedMovie).ToList<MovieFood>();
             if (hey.Count() == 0)
             {
-                return "How unique!";
+                return null;
             }
             List<string> food = new List<string>();
             foreach (var item in hey)

@@ -15,8 +15,8 @@
 <body>
 
     <div class="split left"  onclick="buttonClickOptionOne()" id="inc1">
-        <div class="centered">
-            <img src="@Model.BusinessOne.ImageUrl" alt="Car"  style="width:100%">
+        <div class="centered" contenteditable=true>
+            <img src="@Model.BusinessOne.ImageUrl" alt="Car">
             <h2>@Model.BusinessOne.Name</h2>
 
             <p><a href="@Model.BusinessOne.Url">Yelp link</a></p>
@@ -33,8 +33,8 @@
         </div>
 
         <div class="split right" onclick="buttonClickOptionTwo()" id="inc">
-            <div class="centered" >
-                <img src="@Model.BusinessTwo.ImageUrl" alt="Car"   style="width:100%">
+            <div class="centered" contenteditable=true>
+                <img src="@Model.BusinessTwo.ImageUrl" alt="Car">
                 <h2>@Model.BusinessTwo.Name</h2>
                 <p><a href="@Model.BusinessOne.Url">Yelp link</a></p>
 

@@ -38,6 +38,7 @@ body {
     overflow-x: visible;
     padding-top: 20px;
     overflow-y:auto;
+    justify-content:center;
 }
 
 .left {
@@ -66,8 +67,8 @@ body {
     left: 50%;
     transform: translate(-50%, -60%);
     text-align: center;
-    overflow-y: auto;
-    
+  
+    height:auto;
 }
 
 .centered1 {
@@ -82,8 +83,14 @@ body {
 
 .centered2 {
     position: absolute;
-    top: 84%;
-    left: 20%;
+    top: 24%;
+    left: 10px;
+    overflow-x: auto;
+}
+.centered3 {
+    position: absolute;
+    top: 62%;
+    left: 10px;
     overflow-x: auto;
 }
 
@@ -116,4 +123,25 @@ body {
 input[type=text] {
     background-color:  darkgrey;
     color: white;
+}
+div[contenteditable]:focus {
+    border: 10px solid;
+    color:coral;
+}
+
+div[contenteditable] {
+    width: 97%;
+    max-width: 100%;
+    margin-right: 10px;
+    font-family: Arial,sans-serif;
+    display:  initial;
+    padding: 10px;
+    margin: 5px 5px 5px 5px;
+    outline: 0;
+    background-color: inherit;
+    border: 1x hidden #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    line-height: 20px;
+   
 }
