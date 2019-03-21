@@ -50,67 +50,56 @@
 
     <div class="split right">
         <div class="centered">
-        
+
             <table style="text-align:center">
                 <thead>
                     <tr><th>The battle is over. You fought over these movies:</th></tr>
-                    </thead>
+                </thead>
                 <tbody>
-            
-                @{
 
-                    try // logic to switch between genre/popular depending on which cookies are present
-                    {
-                        List<string> get = HttpContext.Current.Session["info"] as List<string>;
-                        if (get != null)
+                    @{
+
+                        try // logic to switch between genre/popular depending on which cookies are present
                         {
+                            List<string> get = HttpContext.Current.Session["info"] as List<string>;
+                            if (get != null)
+                            {
 
 
-                            //List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
-                            //iterate list
-                            foreach (var item in get)
+                                //List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
+                                //iterate list
+                                foreach (var item in get)
 
-                            {<tr>
-                                <td>@item</td>
-                            </tr>
+                                {
+                                    <tr>
+                                        <td>@item</td>
+                                    </tr>
+                                }
                             }
                         }
-                    }
-                    catch (Exception)
-                    {
-                        List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
-
-                        if (x != null)
+                        catch (Exception)
                         {
+                            List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel> x = Session["info"] as List<FinalProject.Models.MoviePopularity.MoviePopularityViewModel>;
 
-                            <p>You fought over these movies:</p> //iterate list
-                            foreach (var item in x)
-                            {<tr>
-                                <td>@item</td>
-                             </tr>
+                            if (x != null)
+                            {
+
+                                <p>You fought over these movies:</p> //iterate list
+                                foreach (var item in x)
+                                {
+                                    <tr>
+                                        <td>@item</td>
+                                    </tr>
+                                }
+
                             }
 
                         }
 
+
                     }
-                    
-
-                }
-               </tbody>
-                </table>
-                <hr>
-
-                <p>To continue on to food, please enter your ZipCode</p>
-                @using (Html.BeginForm("index", "food"))
-                {
-                    <input type="text" name="zip" />
-                    <input class="button" type="submit" />
-                }
-
-          </div>
-
-            }
-
+                </tbody>
+            </table>
             <hr>
 
             <p>To continue on to food, please enter your ZipCode</p>
@@ -121,6 +110,8 @@
             }
             <p>To try again click below!</p>
             <input type="button" value="Return To Start" class="button" onclick="location.href='@Url.Action("index", "home")'">
+
+        </div>
 
 
         </div>
