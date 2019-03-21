@@ -14,23 +14,24 @@
 </head>
 <body>
 
-    <div class="split left" onclick="buttonClickOptionOne()">
-        <div class="centered">
-            <img src="http://image.tmdb.org/t/p/w185/@Model.MovieOne.poster_path" alt="Car" onclick="buttonClickOptionOne()" id="inc1" style="width:100%">
+    <div class ="split left" onclick="buttonClickOptionOne()" >
+        <div class="centered" contenteditable=true>
+            
+            <img src="http://image.tmdb.org/t/p/w185/@Model.MovieOne.poster_path" alt="Car" id="inc1" style="margin-top:auto">
             <h2>@Model.MovieOne.title</h2>
             <p>@Model.MovieOne.overview</p>
-            <p>Realease Date:       @Model.MovieOne.release_date</p>
+            <p>Release Date:       @Model.MovieOne.release_date</p>
             <p>Popularity Ranking:  @Model.MovieOne.popularity</p>
             <p>Voter Average:       @Model.MovieOne.vote_average</p>
         </div>
     </div>
-
+    
     <div class="split right" onclick="buttonClickOptionTwo()">
-        <div class="centered">
-            <img src="http://image.tmdb.org/t/p/w185/@Model.MovieTwo.poster_path" alt="Car" onclick="buttonClickOptionTwo()" id="inc" style="width:100%">
+        <div class="centered" contenteditable=true >
+            <img src="http://image.tmdb.org/t/p/w185/@Model.MovieTwo.poster_path" alt="Car"  id="inc" style="margin-top:auto">
             <h2>@Model.MovieTwo.title</h2>
             <p>@Model.MovieTwo.overview</p>
-            <p>Realease Date:       @Model.MovieTwo.release_date</p>
+            <p>Release Date:       @Model.MovieTwo.release_date</p>
             <p>Popularity Ranking:  @Model.MovieTwo.popularity</p>
             <p>Voter Average:       @Model.MovieTwo.vote_average</p>
         </div>
